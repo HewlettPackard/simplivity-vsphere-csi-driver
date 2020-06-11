@@ -1,0 +1,8 @@
+apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshotClass
+metadata:
+  name: hpe-simplivity-snapclass
+driver: csi.simplivity.hpe.com
+deletionPolicy: Delete
+parameters:
+  description: "Snapshot created by the HPE SimpliVity vSphere CSI Driver"

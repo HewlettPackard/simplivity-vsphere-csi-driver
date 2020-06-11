@@ -1,0 +1,45 @@
+site_name: HPE SimpliVity VMware CSI Driver
+copyright: ©️ Copyright 2020 - Hewlett Packard Enterprise Development LP
+
+theme:
+    name: readthedocs
+    sticky_navigation: False
+    navigation_depth: 2
+    highlightjs: true
+    hljs_languages:
+        - yaml
+
+extra_css:
+    - css/hpedev.css
+    - css/customizations.css
+
+extra_javascript: [js/navcleanup.js]
+
+markdown_extensions:
+    - pymdownx.superfences
+    - pymdownx.highlight:
+        use_pygments: false
+
+
+nav:
+    - Welcome:
+        - Overview: 'README.md'
+        - 'Quickstart Guide': 'quickstart.md'
+    - 'Prerequisites':
+        - 'Prerequisites': 'driver-deployment/prerequisites-deployment/prerequisites.md'
+        - 'Setup Base Template': 'driver-deployment/prerequisites-deployment/setup-base-template.md'
+        - 'Setup Master and Worker Nodes': 'driver-deployment/prerequisites-deployment/setup-master-and-worker-nodes.md'
+        - 'Install CPI': 'driver-deployment/prerequisites-deployment/install-cpi.md'
+        - 'Install CSI Snapshot Controller': 'driver-deployment/prerequisites-deployment/install-csi-snapshot-controller.md'
+    - 'Driver Deployment':
+        - 'Installation': 'driver-deployment/installation.md'
+        - 'Configuring Topologies': 'driver-deployment/configuring-topologies.md'
+        - 'Uninstallation': 'driver-deployment/uninstallation.md'
+    - 'Using CSI Driver':
+        - 'Setup HPE SimpliVity for CSI': 'setup.md'
+        - 'Using Topologies': 'using-topologies.md'
+        - 'Block Volumes': 'block-volumes.md'
+        - 'Volume Snapshots': 'snapshot.md'
+    - Support:
+        - 'Support Information': 'support-information.md'
+        - 'Known Issues': 'known-issues.md'

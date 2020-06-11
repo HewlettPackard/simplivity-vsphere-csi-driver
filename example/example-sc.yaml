@@ -1,0 +1,15 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: example-vanilla-block-sc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: csi.simplivity.hpe.com
+parameters:
+  # datastoreurl and storagepolicyname are mutually exclusive. If both are
+  # provided, then the datastoreurl is preferred over storagepolicyname
+  datastoreurl: "ds:///vmfs/volumes/8e0cf08c-23872a44/"
+  storagepolicyname: "HPE SimpliVity Default Storage Policy"
+
+  # Optional Parameter
+  fstype: "ext4"

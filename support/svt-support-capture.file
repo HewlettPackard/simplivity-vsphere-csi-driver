@@ -1,0 +1,35 @@
+# FROM specifies machines from which to source collected information.
+# FROM can specify host end points directly using the hosts parameter (default):
+# FROM 10.10.20.100:22 174.123.33.200 192.168.250.1:2222
+# Or,
+# FROM hosts:"10.10.20.100:22 174.123.33.200 192.168.250.1:2222"
+# Machine information can be imported from a running K8s cluster API-server:
+# FROM nodes:"all" labels:"app=foobar"
+FROM nodes:"all"
+
+# AS specifies a userid:groupid to use when 
+# executing commands on local machine.
+# Remote commands defaults to the specified userid.
+# AS userid[:groupid]
+
+# AUTHCONFIG configures authentication for remote connection to cluster machines
+# specified in the FROM declaration above. Each remote connection 
+# will use the specified username and private-key.
+# When FROM local is used, this setting is ignored.
+AUTHCONFIG username:$USER private-key:$HOME/.ssh/id_rsa
+
+# Path to local kubeconfig file
+# If not provided, the tool will attempt to get
+# the config file from env $KUBECONFIG or
+# $HOME/.kube/config
+# KUBECONFIG $HOME/.kube/kind-config-kind
+
+# WORKDIR specifies a location on disk
+# where the tool collects information
+WORKDIR /tmp/svt-k8s-capture
+
+# Collect objects and logs from API server if available
+KUBEGET objects namespaces:"kube-system"
+KUBEGET logs namespaces:"kube-system"
+
+OUTPUT ./svt-k8s-support-capture.tar.gz
