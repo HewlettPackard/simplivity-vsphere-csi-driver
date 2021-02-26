@@ -40,7 +40,7 @@ spec:
             - name: registration-dir
               mountPath: /registration
         - name: svt-csi-node
-          image: docker.io/hpesimplivity/vsphere-csi-driver:v1.0-rc4
+          image: docker.io/hpesimplivity/vsphere-csi-driver:v1.0.0
           imagePullPolicy: "Always"
           env:
             - name: NODE_NAME

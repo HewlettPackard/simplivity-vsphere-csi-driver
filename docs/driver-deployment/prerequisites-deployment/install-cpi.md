@@ -129,8 +129,10 @@ Name:               k8s-worker
 Taints:             <none>
 ```
 
-The `node-role.kubernetes.io/master=:NoSchedule` taint is required to be present on the master nodes to prevent scheduling of the node plugin pods for vsphere-csi-node daemonset on the master nodes. Should you need to re-add the taint, you can use the following command:
+The `node-role.kubernetes.io/master=:NoSchedule` taint is required to be present on the master nodes to prevent scheduling of the node plugin pods for the csi node daemonset on the master nodes. Should you need to re-add the taint, you can use the following command:
 
 ```text
 $ kubectl taint nodes k8s-master node-role.kubernetes.io/master=:NoSchedule
 ```
+
+With the master and worker nodes setup, enabling snapshots is the next piece to setup for the HPE SimpliVity CSI.  This requires the installation of the CSI snapshot controller.

@@ -1,6 +1,6 @@
 # Configure the HPE SimpliVity datastore to support persistent volumes
 
-To configure an HPE SimpliVity datastore to supply storage for persistent volumes, you have to create a vSphere storage policy that uses tag based placement. You use the vSphere client to define the tag, assign the tag to the HPE SimpliVity datastore, and to create a storage policy that uses the tag. Once that is done, you update those values in the Kubernetes `StorageClass.yaml`.
+A storage policy can be used to restrict persitent volume provisioning to a subset of HPE SimpliVity datastores. Since HPE SimpliVity datastores are NFS datastores, the vSphere storage policy must use tag based placement. You use the vSphere client to define the tag, assign the tag to the HPE SimpliVity datastore, and to create a storage policy that uses the tag. Once that is done, you update those values in the Kubernetes `StorageClass.yaml`.
 
 ## Tag the datastore
 

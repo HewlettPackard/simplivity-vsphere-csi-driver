@@ -1,6 +1,6 @@
 # Quickstart Guide for HPE SimpliVity CSI Driver
 
-[Prerequisites](driver-deployment/prerequisites-deployment/prerequisites) must be installed prior to following this quickstart guide.
+[Prerequisites](./driver-deployment/prerequisites-deployment/prerequisites.md) must be installed prior to following this quickstart guide.
 
 ## Create a Storage Class
 
@@ -68,7 +68,7 @@ spec:
   - metadata:
       name: nginx-pvc
       annotations:
-        volume.beta.kubernetes.io/storage-class: "simplivity-sc"  #Name of StorageClass
+        volume.beta.kubernetes.io/storage-class: "simplivity-sc"  # Name of StorageClass
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:

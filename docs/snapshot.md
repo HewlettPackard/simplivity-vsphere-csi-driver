@@ -6,9 +6,9 @@ For dynamic volume creation, creating a PersistentVolumeClaim (PVC) initiates th
 
 The CSI snapshot feature follows the same pattern. Creating a VolumeSnapshot triggers creation of a VolumeSnapshotContent object which contains the snapshot data. A VolumeSnapshot also specifies a VolumeSnapshotClass to provide additional attributes (e.g. retention policy).
 
-- VolumeSnapshotContent: The Kubernetes cluster resource that represents a snapshot of a persistent volume.
-- VolumeSnapshot: A snapshot request. Creating a VolumeSnapshot triggers a snapshot (VolumeSnapshotContent) and the objects are bound together. There is a one-to-one mapping between VolumeSnapshot and VolumeSnapshotContent objects.
-- VolumeSnapshotClass: Dynamically provisioned snapshots specify a VolumeSnapshotClass to provide additional parameters for the snapshot operation. This is similar to how a StorageClass is used for PVs, and allows volumes created from the same StorageClass to be snapshotted with different options (e.g. retention policy).
+- **VolumeSnapshotContent**: The Kubernetes cluster resource that represents a snapshot of a persistent volume.
+- **VolumeSnapshot**: A snapshot request. Creating a VolumeSnapshot triggers a snapshot (VolumeSnapshotContent) and the objects are bound together. There is a one-to-one mapping between VolumeSnapshot and VolumeSnapshotContent objects.
+- **VolumeSnapshotClass**: Dynamically provisioned snapshots specify a VolumeSnapshotClass to provide additional parameters for the snapshot operation. This is similar to how a StorageClass is used for PVs, and allows volumes created from the same StorageClass to be snapshotted with different options (e.g. retention policy).
 
 ## Volume Snapshot Provisioning
 

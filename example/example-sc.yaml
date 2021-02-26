@@ -7,7 +7,9 @@ metadata:
 provisioner: csi.simplivity.hpe.com
 parameters:
   # datastoreurl and storagepolicyname are mutually exclusive. If both are
-  # provided, then the datastoreurl is preferred over storagepolicyname
+  # provided, then the datastoreurl is preferred over storagepolicyname. If
+  # neither are specified then the accessible datastore with the most free
+  # space is selected.
   datastoreurl: "ds:///vmfs/volumes/8e0cf08c-23872a44/"
   storagepolicyname: "HPE SimpliVity Default Storage Policy"
 

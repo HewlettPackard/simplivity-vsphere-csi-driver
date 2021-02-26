@@ -5,71 +5,67 @@ To enable the HPE SimpliVity CSI to take snapshots install the [CSI Snapshot Con
 
 Download the yaml files from
 
-- [CSI Snapshot CRDs](https://github.com/kubernetes-csi/external-snapshotter/tree/master/config/crd)
+- [CSI Snapshot CRDs](https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/config/crd)
 - [CSI Snapshot Controller](https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/snapshot-controller)
 
-In the below examples we are using namespace ***kube-system***, which is a good place to store infrastructure related resources in Kubernetes
+In the below examples we are using namespace ***kube-system***, which is a good place to store infrastructure related resources in Kubernetes.
 
-Update the namespace value in *setup-snapshot-controller.yaml*
+In *setup-snapshot-controller.yaml*, update the namespace and image version. The CSI snapshot controller image version should be a compatible version from the table in [Support Information](../../support-information.md).
 
 ```yaml
-6 metadata:
-7   name: snapshot-controller
-8   namespace: kube-system    # Use kube-system namespace
-9 spec:
+11 metadata:
+12   name: snapshot-controller
+13   namespace: kube-system    # Use kube-system namespace
+14 spec:
+```
+
+```yaml
+27         - name: snapshot-controller
+28           image: quay.io/k8scsi/snapshot-controller:v2.1.1
 ```
 
 Update the namespace values in *rbac-snapshot-controller.yaml*
 
 ```yaml
-3  kind: ServiceAccount
-4  metadata:
-5    name: snapshot-controller
-6    namespace: kube-system    # Use kube-system namespace
-7  ---
+9  kind: ServiceAccount
+10 metadata:
+11   name: snapshot-controller
+12   namespace: kube-system    # Use kube-system namespace
+13
+14 ---
 ```
 
 ```yaml
-9  kind: ClusterRole
-10 apiVersion: rbac.authorization.k8s.io/v1
-11 metadata:
-12   # rename if there are conflicts
-13   name: snapshot-controller-runner
-14   namespace: kube-system    # Use kube-system namespace
-15 rules:
+47 kind: ClusterRoleBinding
+48 apiVersion: rbac.authorization.k8s.io/v1
+49 metadata:
+50   name: snapshot-controller-role
+51 subjects:
+52   - kind: ServiceAccount
+53     name: snapshot-controller
+54     # replace with non-default namespace name
+55     namespace: kube-system    # Use kube-system namespace
+56 roleRef:
 ```
 
 ```yaml
-42 kind: ClusterRoleBinding
-43 apiVersion: rbac.authorization.k8s.io/v1
-44 metadata:
-45   name: snapshot-controller-role
-46 subjects:
-47   - kind: ServiceAccount
-48     name: snapshot-controller
-49     # replace with non-default namespace name
-50     namespace: kube-system    # Use kube-system namespace
-51 roleRef:
+62 kind: Role
+63 apiVersion: rbac.authorization.k8s.io/v1
+64 metadata:
+65   namespace: kube-system    # Use kube-system namespace
+66   name: snapshot-controller-leaderelection
 ```
 
 ```yaml
-59 kind: Role
-60 apiVersion: rbac.authorization.k8s.io/v1
-61 metadata:
-62   namespace: kube-system    # Use kube-system namespace
-63   name: snapshot-controller-leaderelection
-```
-
-```yaml
-71 kind: RoleBinding
-72 apiVersion: rbac.authorization.k8s.io/v1
-73 metadata:
-74   name: snapshot-controller-leaderelection
-75   namespace: kube-system    # Use kube-system namespace
-76 subjects:
-77   - kind: ServiceAccount
-78     name: snapshot-controller
-79     namespace: kube-system    # Use kube-system namespace
+73 kind: RoleBinding
+74 apiVersion: rbac.authorization.k8s.io/v1
+75 metadata:
+76   name: snapshot-controller-leaderelection
+77   namespace: kube-system    # Use kube-system namespace
+78 subjects:
+79   - kind: ServiceAccount
+80     name: snapshot-controller
+81     namespace: kube-system    # Use kube-system namespace
 ```
 
 ## (Optional) Enabling Fault Tolerance
@@ -77,17 +73,17 @@ Update the namespace values in *rbac-snapshot-controller.yaml*
 Update "replica" and "leader-election" values in *setup-snapshot-controller.yaml*
 
 ```yaml
-9  spec:
-10   serviceName: "snapshot-controller"
-11   replicas: 2  # Update value to 2
-12   selector:
+14 spec:
+15   serviceName: "snapshot-controller"
+16   replicas: 2  # Update value to 2
+17   selector:
 ```
 
 ```yaml
-24           args:
-25             - "--v=5"
-26             - "--leader-election=true" # Update value to True
-27           imagePullPolicy: Always
+29           args:
+30             - "--v=5"
+31             - "--leader-election=true" # Update value to True
+32           imagePullPolicy: Always
 ```
 
 ## Install the custom resource definition (CRD) for the Snapshot side car

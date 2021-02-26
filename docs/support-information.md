@@ -3,12 +3,7 @@
 
 ## Limits
 
-The CSI driver has the following limits. Consult the HPE OmniStack documentation for VM and persistent volume (PV) limits which may be more restrictive depending on the hardware configuration.
-
-| Object                                         | Limit         |
-| ---------------------------------------------- | ------------- |
-| Number of PVs per vCenter                      | 10000         |
-| Number of PVs per VM with 4 controllers        | Max 59        |
+Consult the HPE OmniStack documentation for VM limits, which applies to persistent volumes (PV) as well. The limits may be more restrictive depending on the hardware configuration.
 
 <br>
 **Note:** Only a single vCenter is supported by HPE SimpliVity CSI Driver for vSphere. Make sure Kubernetes node VMs do not spread across multiple vCenter servers.
@@ -63,7 +58,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 | CSI Snapshot Controller Version    |    HPE SimpliVity CSI v1.0.0    |
 | ---------------------------------- | ------------------------------- |
-| 2.0.1                              | Supported                       |
+| 2.1.1                              | Supported                       |
 
 <br>
 
