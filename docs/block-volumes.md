@@ -17,7 +17,7 @@ The implementation of dynamic volume provisioning is based on the API object Sto
 
 ### How to Dynamically Provision a Block Volume on a Kubernetes Cluster
 
-Define a StorageClass that links the datastore to Kubernetes:
+Define a StorageClass for the HPE SimpliVity CSI driver as the provisioner. A datastore URL or storage policy can be used to further restrict which datastore will be used by this storage class. In this case, neither are specified which means the driver will select the SimpliVity datastore with the most free space:
 
 ```yaml
 # Contents of example-sc.yaml
@@ -30,8 +30,8 @@ metadata:
 provisioner: csi.simplivity.hpe.com
 parameters:
   # datastoreurl and storagepolicyname are mutually exclusive.
-  datastoreurl: "ds:///vmfs/volumes/9c8391e9-05250c25/"  # Storage URL, found under storage tab in vCenter
-  storagepolicyname: "policy-name"  # Policy on selected datastore, from vCenter
+# datastoreurl: "ds:///vmfs/volumes/9c8391e9-05250c25/"  # Storage URL, found under storage tab in vCenter
+# storagepolicyname: "policy-name"  # Policy on selected datastore, from vCenter
   # Optional Parameter
   fstype: "ext4"
 ```
@@ -144,19 +144,19 @@ Use this method when there is already an existing volume that is wanted by the K
 
 As a cluster administrator, you must know the details of the storage device, its supported configurations, and mount options.
 
-To make existing storage available to a cluster user, you must manually create the storage device, a PeristentVolume, and a PersistentVolumeClaim. Because the PV and the storage device already exists, there is no need to specify a storage class name in the PVC spec. There are many ways to create static PV and PVC bindings some examples are label matching, volume size matching etc...
+To make existing storage available to a cluster user, you must manually create the storage device, a PeristentVolume, and a PersistentVolumeClaim. Because the PV and the storage device already exists, there is no need to specify a storage class name in the PVC spec. There are many ways to create a static PV and PVC binding, some examples are label matching, volume size matching etc...
 
 ### Use Cases of Static Provisioning
 
-Following are the common use cases supported for static volume provisioning:
+Common use cases supported for static volume provisioning:
 
 - **Use an existing storage device:** You provisioned a persistent storage First Class Disk (FCD) directly in your VC and want to use this FCD in your cluster.
 
-- **Make retained data available to the cluster:** You provisioned a volume with a reclaimPolicy: retain in the storage class by using dynamic provisioning. You removed the PVC, but the PV, the physical storage in the VC, and the data still exist. You want to access the retained data from an app in your cluster.
+- **Make retained data available to the cluster:** You provisioned a volume with a `reclaimPolicy: retain` in the storage class by using dynamic provisioning. You removed the PVC, but the PV, the physical storage in the VC, and the data still exist. You want to access the retained data from the same or another app in your cluster.
 
 ### How to Statically Provision a Block Volume on a Kubernetes Cluster
 
-First a `FCD ID` will need to be obtained for the volume. If the volume is not already a FCD it will need to be registered as one. This command will regiseter the volume as a FCD and return the FCD ID
+First a FCD ID will need to be obtained for the volume. If the volume is not already a FCD it will need to be registered as one. This command will regiseter the volume as a FCD and return the FCD ID
 
 ```text
 $ govc disk.register -ds=<datastore name> <myVMDKdirectory/mydisk.vmdk> <new FCD name>

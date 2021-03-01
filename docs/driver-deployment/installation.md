@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD014 -->
 # Install HPE SimpliVity Container Storage Interface (CSI) driver for vSphere
 
-After the VMware CPI and CSI snapshot controller are installed successfully, install the HPE SimpliVity CSI Driver. If those have not been installed please visit the [prerequisites](../prerequisites-deployment/prerequisites) page before proceeding.
+After the VMware CPI and CSI snapshot controller are installed successfully, install the HPE SimpliVity CSI Driver. If those have not been installed please visit the [prerequisites](./prerequisites-deployment/prerequisites.md) page before proceeding.
 
 **Note** that this installation guide only applies to Vanilla Kubernetes clusters on VMware 6.7u3
 
@@ -9,7 +9,7 @@ All steps are performed from the master node
 
 ## Create a CSI Secret
 
-For the driver to access both VMware and the HPE SimpliVity Appliance, a set of credentials need to be passed in through a Kubernetes secret. This is also where the [topology](../configuring-topologies) can be defined. Create a file *csi-vsphere.conf*
+For the driver to access both VMware and the HPE SimpliVity Appliance, a set of credentials need to be passed in through a Kubernetes secret. This is also where the [topology](./configuring-topologies.md) can be defined. Create a file *csi-vsphere.conf*
 
 ```bash
 [Global]
@@ -50,10 +50,10 @@ rm csi-vsphere.conf
 
 ## Create RBAC for HPE SimpliVity CSI Driver
 
-Download and install the HPE SimpliVity RBAC yaml. This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.
+Download and install the [RBAC yaml](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/rbac/svt-csi-controller-rbac.yaml) from the HPE Simplivity CSI Driver GitHub repo. This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.
 
 ```text
-$ kubectl apply -f https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/master/manifests/1.17/rbac/svt-csi-controller-rbac.yaml?raw
+$ kubectl apply -f svt-csi-controller-rbac.yaml
 serviceaccount/svt-csi-controller created
 clusterrole.rbac.authorization.k8s.io/svt-csi-controller-role created
 clusterrolebinding.rbac.authorization.k8s.io/svt-csi-controller-binding created
@@ -61,14 +61,14 @@ clusterrolebinding.rbac.authorization.k8s.io/svt-csi-controller-binding created
 
 ## Install HPE SimpliVity CSI Driver
 
-Download and install the HPE SimpliVity controller-deployment and node-ds yaml files. The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again, you can use kubectl to import the manifest into your cluster.
+Download and install the HPE SimpliVity [controller-deployment](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/deploy/svt-csi-controller-deployment.yaml) and [node-ds](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/deploy/svt-csi-node-ds.yaml) yaml files. The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every worker node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again use kubectl to import the manifest into your cluster.
 
 ```text
-$ kubectl apply -f https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/master/manifests/1.17/deploy/svt-csi-controller-deployment.yaml?raw
+$ kubectl apply -f svt-csi-controller-deployment.yaml
 deployment.apps/svt-csi-controller created
 csidriver.storage.k8s.io/csi.simplivity.hpe.com created
 
-$ kubectl apply -f https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/master/manifests/1.17/deploy/svt-csi-node-ds.yaml?raw
+$ kubectl apply -f svt-csi-node-ds.yaml
 daemonset.apps/svt-csi-node created
 ```
 

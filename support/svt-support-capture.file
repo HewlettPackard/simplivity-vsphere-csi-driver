@@ -1,35 +1,27 @@
-# FROM specifies machines from which to source collected information.
-# FROM can specify host end points directly using the hosts parameter (default):
-# FROM 10.10.20.100:22 174.123.33.200 192.168.250.1:2222
-# Or,
-# FROM hosts:"10.10.20.100:22 174.123.33.200 192.168.250.1:2222"
-# Machine information can be imported from a running K8s cluster API-server:
-# FROM nodes:"all" labels:"app=foobar"
-FROM nodes:"all"
+# crashd global config
+crshd = crashd_config(workdir="{0}/crashd".format(os.home))
 
-# AS specifies a userid:groupid to use when 
-# executing commands on local machine.
-# Remote commands defaults to the specified userid.
-# AS userid[:groupid]
+# enumerate compute resources
+# define a host list provider with configured SSH
+hosts=resources(
+    provider=host_list_provider(
+        # enter the IP(s) of the worker nodes here
+        hosts=["170.10.20.30", "170.40.50.60"],
+        ssh_config=ssh_config(
+            # provide the login credentials and the path the id_rsa file
+            username=os.username,
+            private_key_path="{0}/.ssh/id_rsa".format(os.home),
+        ),
+    ),
+)
 
-# AUTHCONFIG configures authentication for remote connection to cluster machines
-# specified in the FROM declaration above. Each remote connection 
-# will use the specified username and private-key.
-# When FROM local is used, this setting is ignored.
-AUTHCONFIG username:$USER private-key:$HOME/.ssh/id_rsa
+# collect data from hosts
+capture(cmd="sudo df -i", resources=hosts)
+capture(cmd="sudo crictl info", resources=hosts)
+capture(cmd="df -h /var/lib/containerd", resources=hosts)
+capture(cmd="sudo systemctl status kubelet", resources=hosts)
+capture(cmd="sudo systemctl status containerd", resources=hosts)
+capture(cmd="sudo journalctl -xeu kubelet", resources=hosts)
 
-# Path to local kubeconfig file
-# If not provided, the tool will attempt to get
-# the config file from env $KUBECONFIG or
-# $HOME/.kube/config
-# KUBECONFIG $HOME/.kube/kind-config-kind
-
-# WORKDIR specifies a location on disk
-# where the tool collects information
-WORKDIR /tmp/svt-k8s-capture
-
-# Collect objects and logs from API server if available
-KUBEGET objects namespaces:"kube-system"
-KUBEGET logs namespaces:"kube-system"
-
-OUTPUT ./svt-k8s-support-capture.tar.gz
+# archive collected data will be saved here
+archive(output_file="diagnostics.tar.gz", source_paths=[crshd.workdir])

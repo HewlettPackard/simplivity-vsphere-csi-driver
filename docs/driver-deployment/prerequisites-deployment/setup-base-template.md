@@ -46,12 +46,12 @@ AllUsers
 Configure some environment variables for govc, these values determine where the Ubuntu image and Kubernetes nodes are placed.
 
 ```text
-$ export GOVC_INSECURE=1             # Don't verify SSL certs on vCenter
-$ export GOVC_URL=10.10.10.10        # vCenter IP/FQDN
-$ export GOVC_USERNAME=administrator # vCenter username
-$ export GOVC_PASSWORD=password      # vCenter password
-$ export GOVC_DATASTORE=Datastore    # Default datastore to deploy to
-$ export GOVC_NETWORK="VM Network"   # Default network to deploy to
+$ export GOVC_INSECURE=1                  # Don't verify SSL certs on vCenter
+$ export GOVC_URL=10.10.10.10             # vCenter IP/FQDN
+$ export GOVC_USERNAME=administrator      # vCenter username
+$ export GOVC_PASSWORD=password           # vCenter password
+$ export GOVC_DATASTORE=Datastore         # Default datastore to deploy to
+$ export GOVC_NETWORK="VM Network"        # Default network to deploy to
 $ export GOVC_RESOURCE_POOL='*/Resources' # Default resource pool to deploy to
 ```
 
@@ -308,7 +308,7 @@ $ sudo rm -f /etc/ssh/ssh_host_*
 
 Add check for ssh keys on reboot, create */etc/rc.local*
 
-```text
+```bash
 # Contents of /etc/rc.local
 
 #!/bin/sh -e
@@ -367,7 +367,7 @@ Name                                         Description            Type        
 CustomizationName                                                   Persistent    Linux   27/01/2019 21:43:40  <vCenter IP>
 ```
 
-Create some Kubernetes Nodes
+Create Kubernetes master and worker nodes
 
 ```text
 $ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-master
@@ -375,3 +375,5 @@ $ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-wor
 $ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-worker2
 $ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-worker3
 ```
+
+Now that there are some Kubernetes nodes created it is time to setup a master node and the worker nodes.

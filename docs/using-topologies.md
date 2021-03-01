@@ -2,7 +2,7 @@
 <!-- markdownlint-disable MD024 -->
 # Volume Topology for HPE SimpliVity CSI Driver for vSphere
 
-Prerequisite : Enable topology in the Kubernetes Cluster. Follow steps mentioned in [Configuring Topologies](../driver-deployment/configuring-topologies).
+Prerequisite : Enable topology in the Kubernetes Cluster. Follow steps mentioned in [Configuring Topologies](./driver-deployment/configuring-topologies.md).
 
 HPE SimpliVity datastores are only accessible to the hosts that form the local cluster. This is fine if the Kubernetes cluster nodes are all contained on a single HPE SimpliVity/ESXi cluster. However, there may be a need to create a Kubernetes cluster that spans multiple HPE SimpliVity clusters to provide additional fault tolerance or simply to create really large Kubernetes clusters. In this case, worker nodes will only have access to datastores hosted by the local HPE SimpliVity cluster. So how will Kubernetes know which persistent volumes are accessible from which nodes to be able to intelligently provision storage and recover from faults?
 
