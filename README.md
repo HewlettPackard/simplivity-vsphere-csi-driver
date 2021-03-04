@@ -21,4 +21,4 @@ The CSI driver container images are available here:
 
 ## Getting started with HPE SimpliVity CSI
 
-Follow the [quickstart guide](docs/quickstart.md) to get started using the HPE SimpliVity CSI Driver
+Follow the [documentation](https://hewlettpackard.github.io/simplivity-vsphere-csi-driver/) to get started using the HPE SimpliVity CSI Driver
