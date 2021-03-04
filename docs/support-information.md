@@ -78,4 +78,4 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 ## Additional Support Information
 
-* To access documentation and support services, visit the [Hewlett Packard Enterprise Support Center](https://www.hpe.com/support/hpesc).
+* To access documentation and support services, visit the [Hewlett Packard Enterprise Support Center](https://support.hpe.com).
