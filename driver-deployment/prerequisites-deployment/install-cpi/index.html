@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Install CPI - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../../css/hpedev.css" rel="stylesheet" />
+  <link href="../../../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Install CPI";
+    var mkdocs_page_input_path = "driver-deployment/prerequisites-deployment/install-cpi.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-base-template/">Setup Base Template</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Install CPI</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#topologies-setting-up-regions-and-zones">Topologies: Setting up Regions and Zones</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#check-that-all-the-nodes-have-taints">Check that all the nodes have Taints</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../configuring-topologies/">Configuring Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../setup/">Setup HPE SimpliVity for CSI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../using-topologies/">Using Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../snapshot/">Volume Snapshots</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Prerequisites &raquo;</li>
+        
+      
+    
+    <li>Install CPI</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- markdownlint-disable MD014 -->
+<h1 id="installing-vmware-cloud-provider-interface-cpi">Installing VMware Cloud Provider Interface (CPI)</h1>
+<p>Following the VMware CPI guide <a href="https://github.com/kubernetes/cloud-provider-vsphere/blob/master/docs/book/tutorials/kubernetes-on-vsphere-with-kubeadm.md">here</a></p>
+<p>Login to the Master Node and create a config map file <em>/etc/kubernetes/vsphere.conf</em> that is passed into CPI on initialization. This is also where the topology is defined.</p>
+<pre class="highlight"><code class="language-bash"># Contents of /etc/kubernetes/vsphere.conf
+[Global]
+# user = "administrator@vsphere.local.com"  # (Do Not Use) Login to vCenter
+# password = "DoNotUse"                     # (Do Not Use) Password to vCenter
+port = "443"                                # vCenter Server port (Default: 443)
+insecure-flag = "true"                      # Set to true to use self-signed certificate
+secret-name = "cpi-global-secret"           # k8s secret name &lt;- we will create this later
+secret-namespace = "kube-system"            # k8s secret namespace  &lt;- we will create this later
+
+[VirtualCenter "10.1.1.21"]                 # IP of the vCenter to connect to
+datacenters = "Datacenter"                  # Comma separated list of datacenters where kubernetes node VMs are present
+
+### Examples of adding additional vCenters
+# [VirtualCenter "192.168.0.1"]
+# datacenters = "hr"
+
+# [VirtualCenter "10.0.0.1"]
+# datacenters = "engineering"
+# secret-name = "cpi-engineering-secret"
+# secret-namespace = "kube-system"
+
+### Enable regions and zones to the topology
+# [Labels]
+# region = k8s-region
+# zone = k8s-zone</code></pre>
+<p>Create a Cloud-Config for Kubernetes</p>
+<pre class="highlight"><code class="language-text">$ cd /etc/kubernetes
+$ kubectl create configmap cloud-config --from-file=vsphere.conf --namespace=kube-system</code></pre>
+<p>Check that the Cloud Config was created</p>
+<pre class="highlight"><code class="language-text">$ kubectl get configmap cloud-config --namespace=kube-system
+NAME           DATA   AGE
+cloud-config   1      2m19s</code></pre>
+<p>Create a K8s Secret YAML</p>
+<pre class="highlight"><code class="language-yaml">apiVersion: v1
+kind: Secret
+metadata:
+  name: cpi-global-secret             # same secret-name provided in vsphere.conf
+  namespace: kube-system              # same secret-namespace provided in vsphere.conf
+stringData:
+  10.0.0.1.username: "administrator"    # UPDATE the IP to match the vCenter IP
+  10.0.0.1.password: "password"         # UPDATE the IP to match the vCenter IP
+  # 192.168.0.1.username: "administrator@vsphere.local"  # to add another vCenter to the same secret
+  # 192.168.0.1.password: "password"</code></pre>
+<p>Create the Secret</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f cpi-global-secret.yaml</code></pre>
+<h2 id="topologies-setting-up-regions-and-zones">Topologies: Setting up Regions and Zones</h2>
+<p>Kubernetes allows you to place Pods and Persisent Volumes on specific parts of the underlying infrastructure, e.g. different DataCenters or different vCenters, using the concept of Zones and Regions. However, to use placement controls, the required configuration steps needs to be put in place at Kubernetes deployment time, and require additional settings in the vSphere.conf of the CPI. For more information on how to implement zones/regions support, there is a zones/regions tutorial on how to do it <a href="https://github.com/kubernetes/cloud-provider-vsphere/blob/master/docs/book/tutorials/deploying_cpi_and_csi_with_multi_dc_vc_aka_zones.md">here</a>.</p>
+<p>If you are not interested in K8s object placement, this section can be ignored, and you can proceed with the remaining CPI setup steps.</p>
+<h2 id="check-that-all-the-nodes-have-taints">Check that all the nodes have Taints</h2>
+<pre class="highlight"><code class="language-text">$ kubectl describe nodes | egrep "Taints:|Name:"
+Name:               k8s-master
+Taints:             node-role.kubernetes.io/master:NoSchedule
+Name:               k8s-worker
+Taints:             node.kubernetes.io/not-ready:NoExecute</code></pre>
+<p>Deploy cloud controller modules</p>
+<pre class="highlight"><code class="language-text">$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/master/manifests/controller-manager/cloud-controller-manager-roles.yaml
+clusterrole.rbac.authorization.k8s.io/system:cloud-controller-manager created
+
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/master/manifests/controller-manager/cloud-controller-manager-role-bindings.yaml
+rolebinding.rbac.authorization.k8s.io/servicecatalog.k8s.io:apiserver-authentication-reader created
+clusterrolebinding.rbac.authorization.k8s.io/system:cloud-controller-manager created
+
+$ kubectl apply -f https://github.com/kubernetes/cloud-provider-vsphere/raw/master/manifests/controller-manager/vsphere-cloud-controller-manager-ds.yaml
+serviceaccount/cloud-controller-manager created
+daemonset.apps/vsphere-cloud-controller-manager created
+service/vsphere-cloud-controller-manager created</code></pre>
+<p>Verify that the Cloud Controllers were deployed</p>
+<pre class="highlight"><code class="language-text">$ kubectl get pods --namespace=kube-system
+NAME                                        READY   STATUS    RESTARTS   AGE
+coredns-7988585f4-ts5b5                     1/1     Running   1          4d7h
+coredns-7988585f4-wb2bk                     1/1     Running   1          4d7h
+etcd-k8s-master                             1/1     Running   2          4d7h
+kube-apiserver-k8s-master                   1/1     Running   2          4d7h
+kube-controller-manager-k8s-master          1/1     Running   3          4d7h
+kube-flannel-ds-amd64-lfh7s                 1/1     Running   2          7h3m
+kube-flannel-ds-amd64-r5pl6                 1/1     Running   1          11h
+kube-proxy-b2qv4                            1/1     Running   2          4d7h
+kube-proxy-w4bdj                            1/1     Running   0          7h3m
+kube-scheduler-k8s-master                   1/1     Running   2          4d7h
+vsphere-cloud-controller-manager-n8pn2      1/1     Running   1          4h54m</code></pre>
+<p>Check the taints</p>
+<pre class="highlight"><code class="language-text">$ sudo kubectl describe nodes | egrep "Taints:|Name:"
+Name:               k8s-master
+Taints:             node-role.kubernetes.io/master:NoSchedule
+Name:               k8s-worker
+Taints:             &lt;none&gt;</code></pre>
+<p>The <code>node-role.kubernetes.io/master=:NoSchedule</code> taint is required to be present on the master nodes to prevent scheduling of the node plugin pods for the csi node daemonset on the master nodes. Should you need to re-add the taint, you can use the following command:</p>
+<pre class="highlight"><code class="language-text">$ kubectl taint nodes k8s-master node-role.kubernetes.io/master=:NoSchedule</code></pre>
+<p>With the master and worker nodes setup, enabling snapshots is the next piece to setup for the HPE SimpliVity CSI.  This requires the installation of the CSI snapshot controller.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../install-csi-snapshot-controller/" class="btn btn-neutral float-right" title="Install CSI Snapshot Controller">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../setup-master-and-worker-nodes/" class="btn btn-neutral" title="Setup Master and Worker Nodes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../setup-master-and-worker-nodes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../install-csi-snapshot-controller/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../js/navcleanup.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

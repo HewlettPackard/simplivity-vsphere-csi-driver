@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Setup HPE SimpliVity for CSI - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/hpedev.css" rel="stylesheet" />
+  <link href="../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Setup HPE SimpliVity for CSI";
+    var mkdocs_page_input_path = "setup.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/setup-base-template/">Setup Base Template</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/install-cpi/">Install CPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/configuring-topologies/">Configuring Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup HPE SimpliVity for CSI</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tag-the-datastore">Tag the datastore</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-the-storage-policy">Create the storage policy</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#define-a-kubernetes-storageclass">Define a Kubernetes StorageClass</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitor-persistent-volumes-in-vsphere-client">Monitor persistent volumes in vSphere client</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../using-topologies/">Using Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../snapshot/">Volume Snapshots</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Using CSI Driver &raquo;</li>
+        
+      
+    
+    <li>Setup HPE SimpliVity for CSI</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="configure-the-hpe-simplivity-datastore-to-support-persistent-volumes">Configure the HPE SimpliVity datastore to support persistent volumes</h1>
+<p>A storage policy can be used to restrict persitent volume provisioning to a subset of HPE SimpliVity datastores. Since HPE SimpliVity datastores are NFS datastores, the vSphere storage policy must use tag based placement. You use the vSphere client to define the tag, assign the tag to the HPE SimpliVity datastore, and to create a storage policy that uses the tag. Once that is done, you update those values in the Kubernetes <code>StorageClass.yaml</code>.</p>
+<h2 id="tag-the-datastore">Tag the datastore</h2>
+<p>Use the vSphere client to access the Tags &amp; Custom Attributes wizard. Create a new tag and supply a meaningful name and description that will help you identify the datastore.</p>
+<p><img alt="image" src="../graphics/addatag.png" /></p>
+<p>Next, browse to the HPE SimpliVity datastore, and assign the tag to it. Right click the datastore and select <strong>Tags &amp; Custom Attributes &gt; Assign Tag</strong>.</p>
+<p><img alt="image" src="../graphics/assignatag2.png" /></p>
+<h2 id="create-the-storage-policy">Create the storage policy</h2>
+<p>Use the <strong>Create VM Storage Policy</strong> wizard to create the storage policy. (Go to <strong>Menu &gt; Policies and Profiles</strong>).</p>
+<p>Make sure to select <strong>Enable tag based placement rules</strong>.</p>
+<p><img alt="image" src="../graphics/enable-tag-based-placement-rules.png" /></p>
+<p>Use the same tag that you assigned to the HPE SimpliVity datastore.</p>
+<p><img alt="image" src="../graphics/assign-tag.png" /></p>
+<h2 id="define-a-kubernetes-storageclass">Define a Kubernetes StorageClass</h2>
+<p>After you create the storage policies, create a <code>StorageClass.yaml</code> that maps to this storage type.
+You can specify either the <code>datastoreurl</code> or the <code>storagepolicyname</code>. If you specify both, the <code>datastoreurl</code> takes precedence.</p>
+<p>To get the value for the datastoreurl parameter:</p>
+<ol>
+<li>Navigate to the datastore.</li>
+<li>Click the Summary tab.
+<img alt="image" src="../graphics/datastoreurl.png" /></li>
+<li>
+<p>Copy the URL value and add it to the StorageClass.yml file as shown below:</p>
+<pre class="highlight"><code class="language-yaml">kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: simplivity-sc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: csi.simplivity.hpe.com
+parameters:
+  # datastoreurl and storagepolicyname are mutually exclusive. If both are
+  # provided, then the datastoreurl is preferred over storagepolicyname
+  datastoreurl: "ds:///vmfs/volumes/208f9178-aadd745f/"
+  # Optional Parameter
+  fstype: "NFS 3"</code></pre>
+<p>This an example of the yaml with the storagepolicyname:</p>
+<pre class="highlight"><code class="language-yaml">kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: simplivity-sc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: csi.simplivity.hpe.com
+parameters:
+  # datastoreurl and storagepolicyname are mutually exclusive. If both are
+  # provided, then the datastoreurl is preferred over storagepolicyname
+  storagepolicyname: "DailyBackups"  # Tag on selected datastore, from vCenter
+  # Optional Parameter
+  fstype: "ext4"</code></pre>
+</li>
+</ol>
+<h2 id="monitor-persistent-volumes-in-vsphere-client">Monitor persistent volumes in vSphere client</h2>
+<p>Use the vSphere client to see how Kubernetes has provisioned the HPE SimpliVity datastore that you mapped to your Kubernetes cluster.</p>
+<ol>
+<li>
+<p>Navigate to the vCenter Server instance, a data center, or datastore.</p>
+</li>
+<li>
+<p>Click the Monitor tab, then click Container Volumes under Cloud Native Storage to view the details about the persistent volumes that are consuming storage.</p>
+</li>
+<li>
+<p>Click the Details icon to access the details about the Kubernetes objects associated with the persistent volume.</p>
+</li>
+</ol>
+<p><img alt="image" src="../graphics/k8s-objects-view.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../using-topologies/" class="btn btn-neutral float-right" title="Using Topologies">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../driver-deployment/uninstallation/" class="btn btn-neutral" title="Uninstallation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../driver-deployment/uninstallation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../using-topologies/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/navcleanup.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

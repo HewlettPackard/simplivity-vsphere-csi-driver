@@ -1,0 +1,29 @@
+
+.wy-side-scroll {
+    padding-bottom: 20px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;  
+}
+
+th,td {
+    border: 2px solid black !important;
+}
+
+th {
+    background-color: #D6D6D6;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+pre {
+    padding: 0px !important;
+}
+
+code {
+    border: 0px !important;
+}

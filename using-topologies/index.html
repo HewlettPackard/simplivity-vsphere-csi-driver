@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Using Topologies - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/hpedev.css" rel="stylesheet" />
+  <link href="../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Using Topologies";
+    var mkdocs_page_input_path = "using-topologies.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/setup-base-template/">Setup Base Template</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/install-cpi/">Install CPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/configuring-topologies/">Configuring Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup HPE SimpliVity for CSI</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Using Topologies</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#immediate-volume-binding-mode">Immediate volume binding mode </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#waitforfirstconsumer-volume-binding-mode">WaitForFirstConsumer volume binding mode </a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../snapshot/">Volume Snapshots</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Using CSI Driver &raquo;</li>
+        
+      
+    
+    <li>Using Topologies</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD024 -->
+<h1 id="volume-topology-for-hpe-simplivity-csi-driver-for-vsphere">Volume Topology for HPE SimpliVity CSI Driver for vSphere</h1>
+<p>Prerequisite : Enable topology in the Kubernetes Cluster. Follow steps mentioned in <a href="../driver-deployment/configuring-topologies/">Configuring Topologies</a>.</p>
+<p>HPE SimpliVity datastores are only accessible to the hosts that form the local cluster. This is fine if the Kubernetes cluster nodes are all contained on a single HPE SimpliVity/ESXi cluster. However, there may be a need to create a Kubernetes cluster that spans multiple HPE SimpliVity clusters to provide additional fault tolerance or simply to create really large Kubernetes clusters. In this case, worker nodes will only have access to datastores hosted by the local HPE SimpliVity cluster. So how will Kubernetes know which persistent volumes are accessible from which nodes to be able to intelligently provision storage and recover from faults?</p>
+<p>The topology aware provisioning feature was added to Kubernetes to handle this scenario. Cloud providers (vSphere in this case) provide region and zone information to Kubernetes so that volumes will get provisioned in an appropriate zone that can run a pod allowing for an ease of deployment and scale of stateful workloads across failure domains to provide high availability and fault tolerance. For additional information see <a href="https://kubernetes.io/docs/setup/best-practices/multiple-zones/">Kubernetes best practices for running in multiple zones</a>.</p>
+<ul>
+<li><a href="#deploy_workload_using_topology_immediate">Deploy workloads using topology with immediate volume binding mode</a></li>
+<li><a href="#deploy_workload_using_topology_WaitForFirstConsumer">Deploy workloads using topology with WaitForFirstConsumer volume binding mode</a></li>
+</ul>
+<h2 id="immediate-volume-binding-mode">Immediate volume binding mode <a id="deploy_workload_using_topology_immediate"></a></h2>
+<p>When topology is enabled in the cluster, you can deploy a Kubernetes workload to a specific region or zone defined in the topology.</p>
+<p>Use the sample workflow to provision and verify your workloads.</p>
+<ol>
+<li>
+<p>Create a StorageClass that defines zone and region mapping.</p>
+<p>To the StorageClass YAML file, add zone-a and region-1 in the allowedTopologies field. For datastoreurl specify a datastore that is accessible to all nodes in zone-a.</p>
+<pre class="highlight"><code class="language-text">$ tee example-zone-sc.yaml &gt;/dev/null &lt;&lt;'EOF'
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: example-zone-sc
+provisioner: csi.simplivity.hpe.com
+parameters:
+  datastoreurl: ds:///vmfs/volumes/0e65b0b0-00cd0c66/
+allowedTopologies:
+- matchLabelExpressions:
+  - key: failure-domain.beta.kubernetes.io/zone
+    values:
+    - zone-a
+  - key: failure-domain.beta.kubernetes.io/region
+    values:
+    - region-1
+EOF</code></pre>
+<p><strong>Note:</strong> Here <code>volumeBindingMode</code> will be <code>Immediate</code>, as it is default when not specified.</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f example-zone-sc.yaml
+storageclass.storage.k8s.io/example-zone-sc created</code></pre>
+</li>
+<li>
+<p>Create a PersistenceVolumeClaim.</p>
+<pre class="highlight"><code class="language-text">$ tee example-zone-pvc.yaml &gt;/dev/null &lt;&lt;'EOF'
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-zone-pvc
+spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 5Gi
+    storageClassName: example-zone-sc
+EOF</code></pre>
+<pre class="highlight"><code class="language-text">$ kubectl create -f example-zone-pvc.yaml
+persistentvolumeclaim/example-zone-pvc created</code></pre>
+</li>
+<li>
+<p>Verify that a volume is created for the PersistentVolumeClaim.</p>
+<pre class="highlight"><code class="language-text">$ kubectl get pvc example-zone-pvc
+NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+example-zone-pvc   Bound    pvc-4f98579d-2550-4cf2-98bc-dbd117c5906f   5Gi        RWO            example-zone-sc   76s</code></pre>
+</li>
+<li>
+<p>Verify that the persistent volume is provisioned with the <code>Node Affinity</code> rules containing zone and region specified in the StorageClass.</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe pv pvc-4f98579d-2550-4cf2-98bc-dbd117c5906f
+Name:              pvc-4f98579d-2550-4cf2-98bc-dbd117c5906f
+Labels:            &lt;none&gt;
+Annotations:       pv.kubernetes.io/provisioned-by: csi.simplivity.hpe.com
+Finalizers:        [kubernetes.io/pv-protection]
+StorageClass:      example-zone-sc
+Status:            Bound
+Claim:             default/example-zone-pvc
+Reclaim Policy:    Delete
+Access Modes:      RWO
+VolumeMode:        Filesystem
+Capacity:          5Gi
+Node Affinity:
+  Required Terms:
+    Term 0:        failure-domain.beta.kubernetes.io/zone in [zone-a]
+                  failure-domain.beta.kubernetes.io/region in [region-1]
+Message:
+Source:
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            csi.simplivity.hpe.com
+    VolumeHandle:      ffc618b7-75a6-4183-ae2a-a5a590dfe3b8
+    ReadOnly:          false
+    VolumeAttributes:      datastoreurl=ds:///vmfs/volumes/0e65b0b0-00cd0c66/
+                          storage.kubernetes.io/csiProvisionerIdentity=1589983635272-8081-csi.simplivity.hpe.com
+                          type=HPE SimpliVity CNS Block Volume
+Events:                &lt;none&gt;</code></pre>
+</li>
+<li>
+<p>Create a pod.</p>
+<pre class="highlight"><code class="language-text">$ tee example-zone-pod.yaml &gt;/dev/null &lt;&lt;'EOF'
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-zone-pod
+spec:
+  containers:
+  - name: test-container
+    image: gcr.io/google_containers/busybox:1.24
+    command: ["/bin/sh", "-c", "echo
+'hello' &gt; /mnt/volume1/index.html  &amp;&amp; chmod o+rX /mnt
+/mnt/volume1/index.html &amp;&amp; while true ; do sleep 2 ; done"]
+    volumeMounts:
+    - name: test-volume
+      mountPath: /mnt/volume1
+  restartPolicy: Never
+  volumes:
+  - name: test-volume
+    persistentVolumeClaim:
+      claimName: example-zone-pvc
+EOF</code></pre>
+<pre class="highlight"><code class="language-text">$ kubectl create -f example-zone-pod.yaml
+pod/example-zone-pod created</code></pre>
+<p>Pod is scheduled on the node k8s-node1 which belongs to zone: "zone-a" and region: "region-1"</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe pod example-zone-pod | egrep "Node:"
+Node:         k8s-r1za-w01/10.74.48.26</code></pre>
+</li>
+</ol>
+<h2 id="waitforfirstconsumer-volume-binding-mode">WaitForFirstConsumer volume binding mode <a id="deploy_workload_using_topology_WaitForFirstConsumer"></a></h2>
+<p>The HPE SimpliVity CSI Driver for vSphere supports topology-aware volume provisioning with <code>WaitForFirstConsumer</code></p>
+<p>Topology-aware provisioning allows Kubernetes to make intelligent decisions and find the best place to dynamically provision a volume for a pod. In multi-zone clusters, volumes are provisioned in an appropriate zone that can run your pod, allowing you to easily deploy and scale your stateful workloads across failure domains to provide high availability and fault tolerance.</p>
+<p><code>external-provisioner</code> must be deployed with the <code>--strict-topology</code> arguments.</p>
+<p>This argument controls which topology information is passed to <code>CreateVolumeRequest.AccessibilityRequirements</code> in case of a delayed binding.</p>
+<p>For information on how this option changes the result, see this <a href="https://github.com/kubernetes-csi/external-provisioner#topology-support">table</a>. This option has no effect if the topology feature is disabled or the immediate volume binding mode is used.</p>
+<ol>
+<li>
+<p>Create a StorageClass with the <code>volumeBindingMode</code> parameter set to <code>WaitForFirstConsumer</code>.</p>
+<p>For this example, a <code>storagepolicyname</code> is specified that contains datastores from all three zones (zone-a, zone-b, zone-c).</p>
+<pre class="highlight"><code class="language-text">$ tee topology-aware-standard.yaml &gt;/dev/null &lt;&lt;'EOF'
+apiVersion: v1
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: topology-aware-standard
+provisioner: csi.simplivity.hpe.com
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  storagepolicyname: "SvtGoldPolicy"
+EOF</code></pre>
+<pre class="highlight"><code class="language-text">$ kubectl create -f topology-aware-standard.yaml
+storageclass.storage.k8s.io/topology-aware-standard created</code></pre>
+<p>This new setting instructs the volume provisioner, instead of creating a volume immediately, to wait until a pod using an associated PVC runs through scheduling. Note that in the previous StorageClass, <code>failure-domain.beta.kubernetes.io/zone</code> and <code>failure-domain.beta.kubernetes.io/region</code> were specified in the allowedTopologies entry. You <strong>do not</strong> need to specify them again, as pod policies now drive the decision of which zone to use for a volume provisioning.
+<br><br></p>
+</li>
+<li>
+<p>Create a pod and PVC using the StorageClass created previously.</p>
+<p>The following example demonstrates multiple pod constraints and scheduling policies.</p>
+<pre class="highlight"><code class="language-text">$ tee topology-aware-statefulset.yaml &gt;/dev/null &lt;&lt;'EOF'
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              -
+                matchExpressions:
+                  -
+                    key: failure-domain.beta.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - zone-a
+                      - zone-b
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            -
+              labelSelector:
+                matchExpressions:
+                  -
+                    key: app
+                    operator: In
+                    values:
+                      - nginx
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+      containers:
+        - name: nginx
+          image: gcr.io/google_containers/nginx-slim:0.8
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts:
+            - name: www
+              mountPath: /usr/share/nginx/html
+            - name: logs
+              mountPath: /logs
+  volumeClaimTemplates:
+    - metadata:
+        name: www
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: topology-aware-standard
+        resources:
+          requests:
+            storage: 5Gi
+    - metadata:
+        name: logs
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: topology-aware-standard
+        resources:
+          requests:
+            storage: 1Gi
+EOF</code></pre>
+<pre class="highlight"><code class="language-text">$ kubectl create -f topology-aware-statefulset.yaml
+statefulset.apps/web created</code></pre>
+</li>
+<li>
+<p>Verify statefulset is up and running.</p>
+<pre class="highlight"><code class="language-text">$ kubectl get statefulset
+NAME   READY   AGE
+web    2/2     9m8s</code></pre>
+</li>
+<li>
+<p>Review your pods and your nodes.</p>
+<p>Pods are created in <code>zone-a</code> and <code>zone-b</code> specified in the nodeAffinity entry. <code>web-0</code> is scheduled on the node <code>k8s-r1zb-w01</code>, which belongs to <code>zone-b</code>. <code>web-1</code> is scheduled on the node <code>k8s-r1za-w02</code>, which belongs to <code>zone-a</code>.</p>
+<pre class="highlight"><code class="language-text">$ kubectl get pods -o wide
+NAME    READY   STATUS    RESTARTS   AGE   IP             NODE           NOMINATED NODE   READINESS GATES
+web-0   1/1     Running   0          17m   10.233.125.2   k8s-r1zb-w01   &lt;none&gt;           &lt;none&gt;
+web-1   1/1     Running   0          13m   10.233.99.3    k8s-r1za-w02   &lt;none&gt;           &lt;none&gt;
+
+$ kubectl get nodes k8s-r1zb-w01 k8s-r1za-w02 -L failure-domain.beta.kubernetes.io/zone -L failure-domain.beta.kubernetes.io/region --no-headers
+k8s-r1zb-w01   Ready   &lt;none&gt;   16h   v1.17.5   zone-b   region-1
+k8s-r1za-w02   Ready   &lt;none&gt;   16h   v1.17.5   zone-a   region-1</code></pre>
+</li>
+<li>
+<p>Verify volumes are provisioned in zones according to the policies set by the pod.</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe pvc www-web-0 | egrep "volume.kubernetes.io/selected-node"
+              volume.kubernetes.io/selected-node: k8s-r1zb-w01
+
+$ kubectl describe pvc logs-web-0 | egrep "volume.kubernetes.io/selected-node"
+              volume.kubernetes.io/selected-node: k8s-r1zb-w01
+
+$ kubectl describe pvc www-web-1 | egrep "volume.kubernetes.io/selected-node"
+              volume.kubernetes.io/selected-node: k8s-r1za-w02
+
+$ kubectl describe pvc logs-web-1 | egrep "volume.kubernetes.io/selected-node"
+              volume.kubernetes.io/selected-node: k8s-r1za-w02
+
+$ kubectl get pv -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.claimRef.name}{"\t"}{.spec.nodeAffinity}{"\n"}{end}'
+pvc-359c8f41-f60a-4538-bd52-e36d6fe2aa54        logs-web-1      map[required:map[nodeSelectorTerms:[map[matchExpressions:[map[key:failure-domain.beta.kubernetes.io/zone operator:In values:[zone-a]] map[key:failure-domain.beta.kubernetes.io/region operator:In values:[region-1]]]]]]]
+pvc-c0cf4ed1-c4a7-4499-a88b-4153e9a0f461        www-web-1       map[required:map[nodeSelectorTerms:[map[matchExpressions:[map[key:failure-domain.beta.kubernetes.io/zone operator:In values:[zone-a]] map[key:failure-domain.beta.kubernetes.io/region operator:In values:[region-1]]]]]]]
+pvc-c54feadd-af93-44de-87a4-afc5d92e9054        www-web-0       map[required:map[nodeSelectorTerms:[map[matchExpressions:[map[key:failure-domain.beta.kubernetes.io/region operator:In values:[region-1]] map[key:failure-domain.beta.kubernetes.io/zone operator:In values:[zone-b]]]]]]]
+pvc-de8e825c-cd87-4865-968c-324672da0c6d        logs-web-0      map[required:map[nodeSelectorTerms:[map[matchExpressions:[map[key:failure-domain.beta.kubernetes.io/zone operator:In values:[zone-b]] map[key:failure-domain.beta.kubernetes.io/region operator:In values:[region-1]]]]]]]</code></pre>
+</li>
+<li>
+<p>If required, specify allowedTopologies.</p>
+<p>When a cluster operator specifies the WaitForFirstConsumer volume binding mode, it is no longer necessary to restrict provisioning to specific topologies in most situations. However, if required, you can specify allowedTopologies.</p>
+<p>The following example demonstrates how to restrict the topology to specific zone.</p>
+<pre class="highlight"><code class="language-yaml">kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: example-sc
+provisioner: csi.simplivity.hpe.com
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  datastoreurl: ds:///vmfs/volumes/0e65b0b0-00cd0c66/
+allowedTopologies:
+  - matchLabelExpressions:
+      - key: failure-domain.beta.kubernetes.io/zone
+        values:
+          - zone-b
+      - key: failure-domain.beta.kubernetes.io/region
+        values:
+          - region-1</code></pre>
+</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../block-volumes/" class="btn btn-neutral float-right" title="Block Volumes">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../setup/" class="btn btn-neutral" title="Setup HPE SimpliVity for CSI"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../setup/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../block-volumes/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/navcleanup.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

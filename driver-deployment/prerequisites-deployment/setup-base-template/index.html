@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Setup Base Template - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../../css/hpedev.css" rel="stylesheet" />
+  <link href="../../../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Setup Base Template";
+    var mkdocs_page_input_path = "driver-deployment/prerequisites-deployment/setup-base-template.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup Base Template</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#configure-powercli">Configure PowerCLI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setup-govc">Setup govc</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deploy-the-ova">Deploy the OVA</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-docker">Install Docker</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-kubernetes">Install Kubernetes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-network-for-pod-nodes">Install Network for Pod nodes</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../install-cpi/">Install CPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../configuring-topologies/">Configuring Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../setup/">Setup HPE SimpliVity for CSI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../using-topologies/">Using Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../snapshot/">Volume Snapshots</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Prerequisites &raquo;</li>
+        
+      
+    
+    <li>Setup Base Template</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- markdownlint-disable MD014 -->
+<h1 id="setting-up-a-base-template-create-ubuntu-1804-lts-template">Setting up a base template - Create Ubuntu 18.04 LTS Template</h1>
+<p>On a separate system install PowerShell, <a href="https://code.vmware.com/web/dp/tool/vmware-powercli">PowerCLI</a>, <a href="https://github.com/vmware/govmomi/tree/master/govc">govc</a> and download the base OS to use for your Kubernetes installation. It is recommended to use <a href="https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova">Ubuntu 18.04LTS</a> as the base OS for Kubernetes on VMware. DHCP should be configured on the subnet that the Kubernetes nodes are being deployed to.</p>
+<p>Creating the template follows this <a href="https://blah.cloud/kubernetes/creating-an-ubuntu-18-04-lts-cloud-image-for-cloning-on-vmware/">guide</a></p>
+<h2 id="configure-powercli">Configure PowerCLI</h2>
+<p>PowerCLI will need to be configured to bypass certificate validation and the system proxy.</p>
+<pre class="highlight"><code class="language-text"># Install VMware PowerShell Module
+C:\&gt; Install-Module -name VMware.PowerCLI -Confirm:$false
+
+# Disable VMware Customer Experience Improvement Program participation
+C:\&gt; Set-PowerCLIConfiguration -ProxyPolicy NoProxy -Scope User -ParticipateInCEIP $false -Confirm:$false
+
+Scope    ProxyPolicy     DefaultVIServerMode InvalidCertificateAction  DisplayDeprecationWarnings WebOperationTimeout
+                                                                                                  Seconds
+-----    -----------     ------------------- ------------------------  -------------------------- -------------------
+Session  NoProxy         Multiple            Unset                     True                       300
+User
+AllUsers
+
+# Check Version
+PS C:\&gt; Get-Module -Name VMware.VimAutomation.Sdk | select Name, Version
+
+Name                     Version
+----                     -------
+VMware.VimAutomation.Sdk 11.5.0.14898111
+
+# Ignore certificate errors
+C:\&gt; Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
+
+Scope    ProxyPolicy     DefaultVIServerMode InvalidCertificateAction  DisplayDeprecationWarnings WebOperationTimeout
+                                                                                                  Seconds
+-----    -----------     ------------------- ------------------------  -------------------------- -------------------
+Session  NoProxy         Multiple            Ignore                    True                       300
+User                                         Ignore
+AllUsers</code></pre>
+<h2 id="setup-govc">Setup govc</h2>
+<p>Configure some environment variables for govc, these values determine where the Ubuntu image and Kubernetes nodes are placed.</p>
+<pre class="highlight"><code class="language-text">$ export GOVC_INSECURE=1                  # Don't verify SSL certs on vCenter
+$ export GOVC_URL=10.10.10.10             # vCenter IP/FQDN
+$ export GOVC_USERNAME=administrator      # vCenter username
+$ export GOVC_PASSWORD=password           # vCenter password
+$ export GOVC_DATASTORE=Datastore         # Default datastore to deploy to
+$ export GOVC_NETWORK="VM Network"        # Default network to deploy to
+$ export GOVC_RESOURCE_POOL='*/Resources' # Default resource pool to deploy to</code></pre>
+<p>Check that govc has access to your vcenter</p>
+<pre class="highlight"><code class="language-text">$ govc about
+Name:         VMware vCenter Server
+Vendor:       VMware, Inc.
+Version:      6.7.0
+Build:        10244857
+OS type:      linux-x64
+API type:     VirtualCenter
+API version:  6.7.1
+Product ID:   vpx
+UUID:         1bd33d4e-555f-4d8b-9b77-8d155f612155</code></pre>
+<p>Create OVF Spec from Ubuntu OVA</p>
+<pre class="highlight"><code class="language-text">$ govc import.spec ~/Downloads/ubuntu-18.04-server-cloudimg-amd64.ova | python -m json.tool &gt; ubuntu.json</code></pre>
+<p>Create a new SSH key and store it ~/.ssh</p>
+<ul>
+<li>Setting SSH key for <a href="https://www.ssh.com/ssh/keygen">Linux</a></li>
+<li>Setting SSH key for <a href="https://www.ssh.com/ssh/putty/windows/puttygen">Windows</a></li>
+</ul>
+<p>Customize the OVF Spec by updating "Value" for these key fields <strong>hostname, public-keys, password, network and name</strong></p>
+<pre class="highlight"><code class="language-json">{
+    "DiskProvisioning": "thin",
+    "IPAllocationPolicy": "dhcpPolicy",
+    "IPProtocol": "IPv4",
+    "PropertyMapping": [
+        {
+            "Key": "instance-id",
+            "Value": "id-ovf"
+        },
+        {
+            "Key": "hostname",
+            "Value": "Ubuntu1804Template"
+        },
+        {
+            "Key": "seedfrom",
+            "Value": ""
+        },
+        {
+            "Key": "public-keys",
+            "Value": "ssh-rsa [YOUR PUBLIC KEY] [username]"
+        },
+        {
+            "Key": "user-data",
+            "Value": ""
+        },
+        {
+            "Key": "password",
+            "Value": "password"
+        }
+    ],
+    "NetworkMapping": [
+        {
+            "Name": "VM Network",
+            "Network": "VM Network"
+        }
+    ],
+    "MarkAsTemplate": false,
+    "PowerOn": false,
+    "InjectOvfEnv": false,
+    "WaitForIP": false,
+    "Name": "Ubuntu1804Template"
+}</code></pre>
+<p>If using Windows you'll need to convert the ubuntu.json to unix format using <a href="http://dos2unix.sourceforge.net/">dos2unix</a></p>
+<h2 id="deploy-the-ova">Deploy the OVA</h2>
+<p>Import the OVA</p>
+<pre class="highlight"><code class="language-text">$ govc import.ova -options=ubuntu.json ~/Downloads/ubuntu-18.04-server-cloudimg-amd64.ova</code></pre>
+<p>Set the VM's resources</p>
+<pre class="highlight"><code class="language-text">$ govc vm.change -vm Ubuntu1804Template -c 4 -m 4096 -e="disk.enableUUID=1"
+$ govc vm.disk.change -vm Ubuntu1804Template -disk.label "Hard disk 1" -size 60G</code></pre>
+<p>Power on the VM and wait until IP is assigned</p>
+<pre class="highlight"><code class="language-text">$ govc vm.power -on=true Ubuntu1804Template
+$ govc vm.info Ubuntu1804Template
+
+Name:           Ubuntu1804Template
+Path:         /vSAN-DC/vm/Discovered virtual machine/Ubuntu1804Template
+UUID:         42392966-8d21-ceda-5f23-28584c18703b
+Guest name:   Ubuntu Linux (64-bit)
+Memory:       1024MB
+CPU:          2 vCPU(s)
+Power state:  poweredOn
+Boot time:    2019-01-25 18:28:21.978093 +0000 UTC
+IP address:   10.198.17.85
+Host:         10.198.17.31</code></pre>
+<p>Update the VM with open-vm-tools package</p>
+<pre class="highlight"><code class="language-text">$ ssh ubuntu@10.198.17.85
+$ sudo apt update
+$ sudo apt install open-vm-tools -y
+$ sudo apt upgrade -y
+$ sudo apt autoremove -y</code></pre>
+<p>Remove grub.d from the VMs before you upgrade the hardware version.</p>
+<pre class="highlight"><code class="language-text">$ sudo rm -rf /etc/default/grub.d
+$ sudo update-grub
+$ sudo shutdown now</code></pre>
+<p>Set the Hardware version of the VM to 15. This is required for VMware to recognize the VM as a Kubernetes node.</p>
+<pre class="highlight"><code class="language-text">$ govc vm.upgrade -version=15 -vm '/datacenterName/vm/Ubuntu1804Template'</code></pre>
+<p>Verify that the VM's Hardware version was set</p>
+<pre class="highlight"><code class="language-text">$ govc vm.option.info '/datacenterName/vm/Ubuntu1804Template' | grep HwVersion
+HwVersion:           15</code></pre>
+<h2 id="install-docker">Install Docker</h2>
+<p>Power the VM back on and install the libraries needed to install docker</p>
+<pre class="highlight"><code class="language-text">$ govc vm.power -on=true Ubuntu1804Template
+$ govc vm.info Ubuntu1804Template
+$ ssh ubuntu@10.198.17.85
+$ sudo apt install ca-certificates software-properties-common apt-transport-https curl -y</code></pre>
+<p>Add Docker offical GPG Key</p>
+<pre class="highlight"><code class="language-text">$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</code></pre>
+<p>Add Docker apt repository</p>
+<pre class="highlight"><code class="language-text">$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+$ sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -</code></pre>
+<p>Create the file <em>/etc/apt/sources.list.d/kubernetes.list</em> to point to the Kubernetes repo</p>
+<pre class="highlight"><code class="language-bash"># Contents of /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main</code></pre>
+<p>Update apt with the new repositories just added</p>
+<pre class="highlight"><code class="language-bash">$ sudo apt update</code></pre>
+<p>Install DockerCE</p>
+<pre class="highlight"><code class="language-bash"># update to recommended version of docker for k8s 1.17
+$ sudo apt install docker-ce=5:19.03.4~3-0~ubuntu-bionic -y</code></pre>
+<p>Setup Docker's Daemon file /etc/docker/daemon.json</p>
+<pre class="highlight"><code class="language-json"># Contents of /etc/docker/daemon.json
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}</code></pre>
+<p>Restart the Docker service using the new settings</p>
+<pre class="highlight"><code class="language-text">$ sudo mkdir -p /etc/systemd/system/docker.service.d
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+$ sudo systemctl status docker
+ docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2019-09-06 12:37:27 UTC; 4min 15s ago
+$ sudo docker info | egrep "Server Version|Cgroup Driver"
+Server Version: 19.03.4-ce
+Cgroup Driver: systemd</code></pre>
+<h2 id="install-kubernetes">Install Kubernetes</h2>
+<pre class="highlight"><code class="language-text">$ sudo apt install -qy kubeadm=1.17.0-00 kubelet=1.17.0-00 kubectl=1.17.0-00</code></pre>
+<p>Hold Kubernetes packages at their installed version so they do not upgrade unexpectedly on an apt upgrade</p>
+<pre class="highlight"><code class="language-text">$ sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
+<h2 id="install-network-for-pod-nodes">Install Network for Pod nodes</h2>
+<p>This example uses Flannel for the kubernetes cluster network. Flannel needs to have IPv4 traffic bridged to iptables chains</p>
+<pre class="highlight"><code class="language-text">$ sudo sysctl net.bridge.bridge-nf-call-iptables=1</code></pre>
+<p>Disable cloud-init on VM and use VMware Guest Customization specs instead</p>
+<pre class="highlight"><code class="language-text">$ sudo cloud-init clean --logs
+$ sudo touch /etc/cloud/cloud-init.disabled
+$ sudo rm -rf /etc/netplan/50-cloud-init.yaml
+$ sudo apt purge cloud-init -y
+$ sudo apt autoremove -y
+
+# Don't clear /tmp
+$ sudo sed -i 's/D \/tmp 1777 root root -/#D \/tmp 1777 root root -/g' /usr/lib/tmpfiles.d/tmp.conf
+
+# Remove cloud-init and rely on dbus for open-vm-tools
+$ sudo sed -i 's/Before=cloud-init-local.service/After=dbus.service/g' /lib/systemd/system/open-vm-tools.service
+
+# cleanup current ssh keys so templated VMs get fresh key
+$ sudo rm -f /etc/ssh/ssh_host_*</code></pre>
+<p>Add check for ssh keys on reboot, create <em>/etc/rc.local</em></p>
+<pre class="highlight"><code class="language-bash"># Contents of /etc/rc.local
+
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+
+# By default this script does nothing.
+test -f /etc/ssh/ssh_host_dsa_key || dpkg-reconfigure openssh-server
+exit 0</code></pre>
+<p>Clean the VM before making it a template</p>
+<pre class="highlight"><code class="language-text"># make the script executable
+$ sudo chmod +x /etc/rc.local
+
+# cleanup apt
+$ sudo apt clean
+
+# reset the machine-id (DHCP leases in 18.04 are generated based on this... not MAC...)
+$ echo "" | sudo tee /etc/machine-id &gt;/dev/null
+
+# disable swap for K8s
+$ sudo swapoff --all
+$ sudo sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+
+# cleanup shell history and shutdown for templating
+$ history -c
+$ history -w
+$ sudo shutdown -h now</code></pre>
+<p>Turn the VM into a Template</p>
+<pre class="highlight"><code class="language-text">$ govc vm.markastemplate Ubuntu1804Template</code></pre>
+<p>Define a Customization spec with DNS, Domain, and OSType defined</p>
+<pre class="highlight"><code class="language-text">$ Connect-VIServer &lt;vCenter IP&gt; -User &lt;vCenter Username&gt; -Password &lt;vCenter Password&gt;
+$ New-OSCustomizationSpec -Name CustomizationName -OSType Linux -DnsServer 1.1.1.1, 8.8.8.8 -DnsSuffix mydomain.net -Domain mydomain.net -NamingScheme vm
+
+Name                                         Description            Type          OSType  LastUpdate           Server
+----                                         -----------            ----          ------  ----------           ------
+CustomizationName                                                   Persistent    Linux   27/01/2019 21:43:40  &lt;vCenter IP&gt;</code></pre>
+<p>Create Kubernetes master and worker nodes</p>
+<pre class="highlight"><code class="language-text">$ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-master
+$ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-worker1
+$ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-worker2
+$ govc vm.clone -vm Ubuntu1804Template -customization=CustomizationName  k8s-worker3</code></pre>
+<p>Now that there are some Kubernetes nodes created it is time to setup a master node and the worker nodes.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../setup-master-and-worker-nodes/" class="btn btn-neutral float-right" title="Setup Master and Worker Nodes">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../prerequisites/" class="btn btn-neutral" title="Prerequisites"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../prerequisites/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../setup-master-and-worker-nodes/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../js/navcleanup.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

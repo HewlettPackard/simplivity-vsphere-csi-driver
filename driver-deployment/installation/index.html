@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Installation - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/hpedev.css" rel="stylesheet" />
+  <link href="../../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "driver-deployment/installation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/setup-base-template/">Setup Base Template</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/install-cpi/">Install CPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create-a-csi-secret">Create a CSI Secret</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-rbac-for-hpe-simplivity-csi-driver">Create RBAC for HPE SimpliVity CSI Driver</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-hpe-simplivity-csi-driver">Install HPE SimpliVity CSI Driver</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verify-that-the-csi-driver-successfully-installed">Verify that the CSI Driver successfully installed</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../configuring-topologies/">Configuring Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../setup/">Setup HPE SimpliVity for CSI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../using-topologies/">Using Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../snapshot/">Volume Snapshots</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Driver Deployment &raquo;</li>
+        
+      
+    
+    <li>Installation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- markdownlint-disable MD014 -->
+<h1 id="install-hpe-simplivity-container-storage-interface-csi-driver-for-vsphere">Install HPE SimpliVity Container Storage Interface (CSI) driver for vSphere</h1>
+<p>After the VMware CPI and CSI snapshot controller are installed successfully, install the HPE SimpliVity CSI Driver. If those have not been installed please visit the <a href="../prerequisites-deployment/prerequisites/">prerequisites</a> page before proceeding.</p>
+<p><strong>Note</strong> that this installation guide only applies to Vanilla Kubernetes clusters on VMware 6.7u3</p>
+<p>All steps are performed from the master node</p>
+<h2 id="create-a-csi-secret">Create a CSI Secret</h2>
+<p>For the driver to access both VMware and the HPE SimpliVity Appliance, a set of credentials need to be passed in through a Kubernetes secret. This is also where the <a href="../configuring-topologies/">topology</a> can be defined. Create a file <em>csi-vsphere.conf</em></p>
+<pre class="highlight"><code class="language-bash">[Global]
+cluster-id = "demo-cluster-id"        # Cluster Name, Each Kubernetes cluster should have it's own unique cluster-id set in the csi-vsphere.conf file
+
+[VirtualCenter "1.1.1.1"]             # vCenter IP
+insecure-flag = "true"                # Set to true to use self-signed certificate
+user = "administrator"                # Login ID
+password = "password"                 # Login Password
+port = "443"                          # vCenter Server Port, Default Port 443
+datacenters = "datacenter"            # Comma separated list of Datacenter names where Kubernetes node VMs are present.
+
+[HPESimpliVity]
+ip = "1.1.1.2"                        # HPE SimpliVity Management Virtual Appliance (MVA) IP Address or Management IP address
+user = "simplivity_user"              # Login ID of HPE SimpliVity OVC
+password = "simplivity_password"      # Password of HPE SimpliVity OVC
+
+### Enable regions and zones to the topology
+# [Labels]
+# region = k8s-region
+# zone = k8s-zone</code></pre>
+<p>Create the secret</p>
+<pre class="highlight"><code class="language-text">$ kubectl create secret generic vsphere-config-secret --from-file=csi-vsphere.conf --namespace=kube-system
+$ kubectl get secret vsphere-config-secret --namespace=kube-system
+NAME                    TYPE     DATA   AGE
+vsphere-config-secret   Opaque   1      12s</code></pre>
+<p>After creating the secret in Kubernetes, remove the file for security.</p>
+<pre class="highlight"><code class="language-text">rm csi-vsphere.conf</code></pre>
+<h2 id="create-rbac-for-hpe-simplivity-csi-driver">Create RBAC for HPE SimpliVity CSI Driver</h2>
+<p>Download and install the <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/rbac/svt-csi-controller-rbac.yaml">RBAC yaml</a> from the HPE Simplivity CSI Driver GitHub repo. This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.</p>
+<pre class="highlight"><code class="language-text">$ kubectl apply -f svt-csi-controller-rbac.yaml
+serviceaccount/svt-csi-controller created
+clusterrole.rbac.authorization.k8s.io/svt-csi-controller-role created
+clusterrolebinding.rbac.authorization.k8s.io/svt-csi-controller-binding created</code></pre>
+<h2 id="install-hpe-simplivity-csi-driver">Install HPE SimpliVity CSI Driver</h2>
+<p>Download and install the HPE SimpliVity <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/deploy/svt-csi-controller-deployment.yaml">controller-deployment</a> and <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/deploy/svt-csi-node-ds.yaml">node-ds</a> yaml files. The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every worker node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again use kubectl to import the manifest into your cluster.</p>
+<pre class="highlight"><code class="language-text">$ kubectl apply -f svt-csi-controller-deployment.yaml
+deployment.apps/svt-csi-controller created
+csidriver.storage.k8s.io/csi.simplivity.hpe.com created
+
+$ kubectl apply -f svt-csi-node-ds.yaml
+daemonset.apps/svt-csi-node created</code></pre>
+<h2 id="verify-that-the-csi-driver-successfully-installed">Verify that the CSI Driver successfully installed</h2>
+<p>Verify CSI Controller</p>
+<pre class="highlight"><code class="language-text">$ kubectl get deployment -n kube-system
+NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
+coredns              2/2     2            2           30d
+svt-csi-controller   1/1     1            1           37m</code></pre>
+<p>Check that the CSI is running. There should be one CSI node per worker node in the cluster (this example has 2 worker nodes)</p>
+<pre class="highlight"><code class="language-text">$ kubectl get pods --namespace=kube-system
+NAME                                                   READY   STATUS    RESTARTS   AGE
+coredns-7988585f4-gww47                                1/1     Running   0          20m14s
+coredns-7988585f4-z9l7l                                1/1     Running   0          20m14s
+etcd-2002210051-k8s-master-1                           1/1     Running   0          20m9s
+kube-apiserver-2002210051-k8s-master-1                 1/1     Running   0          20m9s
+kube-controller-manager-2002210051-k8s-master-1        1/1     Running   0          20m9s
+kube-flannel-ds-amd64-kbzbv                            1/1     Running   0          16m44s
+kube-flannel-ds-amd64-mwpxm                            1/1     Running   0          20m7s
+kube-flannel-ds-amd64-snxqz                            1/1     Running   2          15m6s
+kube-proxy-4sv8n                                       1/1     Running   0          15m6s
+kube-proxy-ccltk                                       1/1     Running   0          16m44s
+kube-proxy-kdgm9                                       1/1     Running   0          20m15s
+kube-scheduler-2002210051-k8s-master-1                 1/1     Running   0          20m9s
+snapshot-controller-0                                  1/1     Running   0          11m
+svt-csi-controller-0                                   6/6     Running   0          4m1s
+svt-csi-node-jxrfr                                     3/3     Running   0          3m5s
+svt-csi-node-rdj99                                     3/3     Running   0          4m1s
+vsphere-cloud-controller-manager-twcg5                 1/1     Running   0          4m56s</code></pre>
+<p>Verify that the CSI Custom Resource Definitions are working</p>
+<pre class="highlight"><code class="language-text">$ kubectl get CSINode
+NAME                           CREATED AT
+2002210051-k8s-master-1        2020-02-21T01:04:54Z
+2002210051-k8s-worker-1        2020-02-21T01:06:43Z
+2002210051-k8s-worker-2        2020-02-21T01:08:22Z
+
+$ kubectl describe CSINode
+Name:         2002210051-k8s-master-1
+Namespace:
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  storage.k8s.io/v1
+Kind:         CSINode
+Metadata:
+  Creation Timestamp:  2020-02-21T01:04:54Z
+  Owner References:
+    API Version:     v1
+    Kind:            Node
+    Name:            2002210051-k8s-master-1
+    UID:             20efb15c-3925-4ace-8800-dc3a21b26ad5
+  Resource Version:  40
+  Self Link:         /apis/storage.k8s.io/v1/csinodes/2002210051-k8s-master-1
+  UID:               09241566-19b8-4332-9536-03ef984e671b
+Spec:
+  Drivers:  &lt;nil&gt;
+Events:     &lt;none&gt;
+
+
+Name:         2002210051-k8s-worker-1
+Namespace:
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  storage.k8s.io/v1
+Kind:         CSINode
+Metadata:
+  Creation Timestamp:  2020-02-21T01:06:43Z
+  Owner References:
+    API Version:     v1
+    Kind:            Node
+    Name:            2002210051-k8s-worker-1
+    UID:             aef35e9d-2291-4f52-a5b6-7514e47d6781
+  Resource Version:  1346
+  Self Link:         /apis/storage.k8s.io/v1/csinodes/2002210051-k8s-worker-1
+  UID:               a4d5abcf-51d9-438e-8567-d7f7ace93bfd
+Spec:
+  Drivers:
+    Name:           csi.simplivity.hpe.com
+    Node ID:        2002210051-k8s-worker-1
+    Topology Keys:  &lt;nil&gt;
+Events:             &lt;none&gt;
+
+
+Name:         2002210051-k8s-worker-2
+Namespace:
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  storage.k8s.io/v1
+Kind:         CSINode
+Metadata:
+  Creation Timestamp:  2020-02-21T01:08:22Z
+  Owner References:
+    API Version:     v1
+    Kind:            Node
+    Name:            2002210051-k8s-worker-2
+    UID:             089e54ff-7078-450b-a37f-ac57b928bd32
+  Resource Version:  1822
+  Self Link:         /apis/storage.k8s.io/v1/csinodes/2002210051-k8s-worker-2
+  UID:               194ca6e4-e915-46bf-840f-f7f32badf361
+Spec:
+  Drivers:
+    Name:           csi.simplivity.hpe.com
+    Node ID:        2002210051-k8s-worker-2
+    Topology Keys:  &lt;nil&gt;
+Events:             &lt;none&gt;</code></pre>
+<p>Verify the CSI Driver</p>
+<pre class="highlight"><code class="language-text">$ kubectl get csidrivers
+NAME                     CREATED AT
+csi.simplivity.hpe.com   2020-02-21T01:09:26Z
+
+$ kubectl describe csidrivers
+Name:         csi.simplivity.hpe.com
+Namespace:
+Labels:       &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"storage.k8s.io/v1beta1","kind":"CSIDriver","metadata":{"annotations":{},"name":"csi.simplivity.hpe.com"},"spec":{"attachReq...
+API Version:  storage.k8s.io/v1beta1
+Kind:         CSIDriver
+Metadata:
+  Creation Timestamp:  2020-06-12T15:41:23Z
+  Resource Version:    7766961
+  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/csi.simplivity.hpe.com
+  UID:                 32306d10-cbaf-4091-b234-89d948e25a5a
+Spec:
+  Attach Required:    true
+  Pod Info On Mount:  false
+  Volume Lifecycle Modes:
+    Persistent
+Events:  &lt;none&gt;</code></pre>
+<p>Verify cluster setup and get the provider IDs for each Node</p>
+<pre class="highlight"><code class="language-text">$ kubectl get nodes
+NAME                           STATUS   ROLES    AGE     VERSION
+2002210051-k8s-master-1   Ready    master   13m     v1.17.0
+2002210051-k8s-worker-1   Ready    &lt;none&gt;   11m     v1.17.0
+2002210051-k8s-worker-2   Ready    &lt;none&gt;   9m38s   v1.17.0
+
+$ kubectl describe nodes | grep "ProviderID"
+ProviderID:                   vsphere://4238f1df-c5ba-30da-3ad6-18431ebe5f6a
+ProviderID:                   vsphere://4238b026-11d2-886b-74aa-5e2ec47a5657
+ProviderID:                   vsphere://42383955-c3c1-26eb-2f60-66331c393847</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../configuring-topologies/" class="btn btn-neutral float-right" title="Configuring Topologies">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../prerequisites-deployment/install-csi-snapshot-controller/" class="btn btn-neutral" title="Install CSI Snapshot Controller"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../prerequisites-deployment/install-csi-snapshot-controller/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../configuring-topologies/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/navcleanup.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

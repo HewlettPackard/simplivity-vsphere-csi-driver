@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Volume Snapshots - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/hpedev.css" rel="stylesheet" />
+  <link href="../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Volume Snapshots";
+    var mkdocs_page_input_path = "snapshot.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/setup-base-template/">Setup Base Template</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/install-cpi/">Install CPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/prerequisites-deployment/install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/configuring-topologies/">Configuring Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../driver-deployment/uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../setup/">Setup HPE SimpliVity for CSI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../using-topologies/">Using Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Volume Snapshots</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#volume-snapshot-provisioning">Volume Snapshot Provisioning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#restoring-a-volume-snapshot">Restoring a Volume Snapshot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deleting-a-volume-snapshot">Deleting a Volume Snapshot</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Using CSI Driver &raquo;</li>
+        
+      
+    
+    <li>Volume Snapshots</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD014 -->
+<h1 id="hpe-simplivity-csi-driver-volume-snapshots">HPE SimpliVity CSI Driver - Volume Snapshots</h1>
+<p>For dynamic volume creation, creating a PersistentVolumeClaim (PVC) initiates the creation of a PersistentVolume (PV) which contains the data. A PVC also specifies a StorageClass which provides additional attributes (e.g. SimpliVity datastore).</p>
+<p>The CSI snapshot feature follows the same pattern. Creating a VolumeSnapshot triggers creation of a VolumeSnapshotContent object which contains the snapshot data. A VolumeSnapshot also specifies a VolumeSnapshotClass to provide additional attributes (e.g. retention policy).</p>
+<ul>
+<li><strong>VolumeSnapshotContent</strong>: The Kubernetes cluster resource that represents a snapshot of a persistent volume.</li>
+<li><strong>VolumeSnapshot</strong>: A snapshot request. Creating a VolumeSnapshot triggers a snapshot (VolumeSnapshotContent) and the objects are bound together. There is a one-to-one mapping between VolumeSnapshot and VolumeSnapshotContent objects.</li>
+<li><strong>VolumeSnapshotClass</strong>: Dynamically provisioned snapshots specify a VolumeSnapshotClass to provide additional parameters for the snapshot operation. This is similar to how a StorageClass is used for PVs, and allows volumes created from the same StorageClass to be snapshotted with different options (e.g. retention policy).</li>
+</ul>
+<h2 id="volume-snapshot-provisioning">Volume Snapshot Provisioning</h2>
+<p>There are two types of snapshot provisioning in a Kubernetes cluster:</p>
+<ul>
+<li><a href="#dynamic_volume_snapshot">Dynamic Volume Snapshot</a>: Create an on-demand snapshot.</li>
+<li><a href="#static_volume_snapshot">Static Volume Snapshot</a>: Create a snapshot for a pre-existing HPE SimpliVity snapshot. For example, to create a Kubernetes snapshot from a scheduled backup.</li>
+</ul>
+<h3 id="dynamic-volume-snapshot">Dynamic Volume Snapshot<a id="dynamic_volume_snapshot"></a></h3>
+<p>Volume snapshots of HPE SimpliVity volumes can be created on demand using the Kubernetes CLI. To do so, create a <code>VolumeSnapshot</code> object containing the <code>PersistentVolumeClaim</code> that you wish to snap. Kubernetes does not quiesce IO during a snapshot operation and thus the snapshot will just be crash consistent. To take an application consistent snapshot, you must take additional steps (e.g. shutdown the pod consuming the PV).</p>
+<h4 id="dynamic-snapshot-procedure">Dynamic Snapshot Procedure</h4>
+<ol>
+<li>
+<p>Define a VolumeSnapshotClass. The <code>deletionPolicy</code> enables you to configure what happens to a VolumeSnapshotContent object when the VolumeSnapshot object to which it is bound is deleted. The <code>deletionPolicy</code> of a volume snapshot can either be <code>Retain</code> or <code>Delete</code>.</p>
+<pre class="highlight"><code class="language-yaml">apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshotClass
+metadata:
+  name: hpe-simplivity-snapclass
+driver: csi.simplivity.hpe.com
+deletionPolicy: Delete
+parameters:
+  description: "Snapshot created by the HPE SimpliVity vSphere CSI Driver"</code></pre>
+</li>
+<li>
+<p>Create the VolumeSnapshotClass object.</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f example-snapshotclass.yaml</code></pre>
+</li>
+<li>
+<p>Define a VolumeSnapshot object. <code>volumeSnapshotClassName</code> specifies the snapshot options (defined in step 2) and <code>persistentVolumeClaim</code> identifies the snapshot source volume.</p>
+<pre class="highlight"><code class="language-yaml">apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshot
+metadata:
+  name: www-web-snap-1
+spec:
+  volumeSnapshotClassName: hpe-simplivity-snapclass
+  source:
+    persistentVolumeClaimName: www-web-0</code></pre>
+</li>
+<li>
+<p>Create the VolumeSnapshot object to request a snapshot.</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f dynamic-snapshot.yaml</code></pre>
+</li>
+<li>
+<p>Verify the VolumeSnapshot object was created in Kubernetes.</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe volumesnapshot www-web-snap-1
+Name:         www-web-snap-1
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  snapshot.storage.k8s.io/v1beta1
+Kind:         VolumeSnapshot
+Metadata:
+  Creation Timestamp:  2020-06-12T19:00:42Z
+  Finalizers:
+    snapshot.storage.kubernetes.io/volumesnapshot-as-source-protection
+    snapshot.storage.kubernetes.io/volumesnapshot-bound-protection
+  Generation:        1
+  Resource Version:  8840186
+  Self Link:         /apis/snapshot.storage.k8s.io/v1beta1/namespaces/default/volumesnapshots/www-web-snap-1
+  UID:               7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+Spec:
+  Source:
+    Persistent Volume Claim Name:  www-web-0
+  Volume Snapshot Class Name:      hpe-simplivity-snapclass
+Status:
+  Bound Volume Snapshot Content Name:  snapcontent-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+  Creation Time:                       2020-06-12T19:01:08Z
+  Ready To Use:                        true
+  Restore Size:                        1Gi
+Events:                                &lt;none&gt;</code></pre>
+</li>
+<li>
+<p>You can also verify the backup from HPE SimpliVity.</p>
+<pre class="highlight"><code class="language-text">$ svt-backup-show --pv pvc-e3fe7f3b-e00a-4b0d-9d65-89c3564081be_fcd --datastore svt-ds
+.----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------.
+| Backups for PV 'pvc-e3fe7f3b-e00a-4b0d-9d65-89c3564081be_fcd' on datastore 'svt-ds'                                                                                                        |
++-----------------------------------------------+--------+-------------+----------------------+------------+------------+----------------+-----------+----------+------+-------------+---------+
+| Backup                                        | Backup | Consistency | Backup               | Expiration | Datacenter | Cluster Or     | Status    | Size     | Sent | Replication | Family  |
+| Name                                          | Type   | Type        | Time                 | Time       |            | External Store |           |          |      | End Time    |         |
++-----------------------------------------------+--------+-------------+----------------------+------------+------------+----------------+-----------+----------+------+-------------+---------+
+| snapshot-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc | Manual | None        | 2020-Jun-12 19:01:08 | N/A        | K8DC1      | K8Cluster1     | Protected | 656.00KB |   0B | N/A         | vSphere |
+'-----------------------------------------------+--------+-------------+----------------------+------------+------------+----------------+-----------+----------+------+-------------+---------'</code></pre>
+</li>
+</ol>
+<h3 id="static-volume-snapshot">Static Volume Snapshot<a id="static_volume_snapshot"></a></h3>
+<p>Static volume snapshot provisioning allows cluster administrators to make existing snapshots available to a cluster. A common HPE SimpliVity use case is creating a snapshot from a scheduled backup.</p>
+<h4 id="static-snapshot-procedure">Static Snapshot Procedure</h4>
+<ol>
+<li>
+<p>Use the HPE SimpliVity <code>svt-backup-show</code> CLI to retrieve the ID of the backup that you wish to restore.</p>
+<pre class="highlight"><code class="language-text">$ svt-backup-show --pv pvc-e3fe7f3b-e00a-4b0d-9d65-89c3564081be_fcd --datastore svt-ds --backup 2020-06-15T11:10:00-04:00 --output xml
+&lt;CommandResult&gt;
+    &lt;Backup&gt;
+        &lt;dsRemoved&gt;&lt;/dsRemoved&gt;
+        &lt;datacenter&gt;K8DC1&lt;/datacenter&gt;
+        &lt;expirationTime&gt;1592320200&lt;/expirationTime&gt;
+        &lt;replicationStartTime&gt;0&lt;/replicationStartTime&gt;
+        &lt;datacenterName&gt;K8DC1&lt;/datacenterName&gt;
+        &lt;partial&gt;&lt;/partial&gt;
+        &lt;associatedCluster&gt;00000000-0000-0000-0000-000000000000&lt;/associatedCluster&gt;
+        &lt;zoneStatus&gt;1&lt;/zoneStatus&gt;
+        &lt;computeClusterName&gt;K8Cluster1&lt;/computeClusterName&gt;
+        &lt;consistent&gt;&lt;/consistent&gt;
+        &lt;lastTimeSizeCalc&gt;0&lt;/lastTimeSizeCalc&gt;
+        &lt;treeId&gt;e8f03589-bdf3-4cc4-b401-e00c05c8ad11&lt;/treeId&gt;
+        &lt;percentComp&gt;0&lt;/percentComp&gt;
+        &lt;uniqueSize&gt;0&lt;/uniqueSize&gt;
+        &lt;percentTrans&gt;0&lt;/percentTrans&gt;
+        &lt;dcId&gt;e871a438-bcfc-476b-9081-7042a466771c&lt;/dcId&gt;
+        &lt;sentSize&gt;0&lt;/sentSize&gt;
+        &lt;timestamp&gt;1592233800&lt;/timestamp&gt;
+        &lt;repTaskId&gt;00000000-0000-0000-0000-000000000000&lt;/repTaskId&gt;
+        &lt;computeClusterHmsId&gt;9168aa17-f5a7-4d3c-94f6-5f7293bb80c3:ClusterComputeResource:domain-c7&lt;/computeClusterHmsId&gt;
+        &lt;datacenterHmsId&gt;9168aa17-f5a7-4d3c-94f6-5f7293bb80c3:Datacenter:datacenter-2&lt;/datacenterHmsId&gt;
+        &lt;dsId&gt;833a131c-09f2-46a3-94a9-e4b4342a9efe&lt;/dsId&gt;
+        &lt;datastore&gt;svt-ds&lt;/datastore&gt;
+        &lt;hypervisorType&gt;1&lt;/hypervisorType&gt;
+        &lt;replicationElapsedSeconds&gt;0&lt;/replicationElapsedSeconds&gt;
+        &lt;externalStoreName&gt;&lt;/externalStoreName&gt;
+        &lt;pedigree&gt;1&lt;/pedigree&gt;
+        &lt;omnistackClusterId&gt;e871a438-bcfc-476b-9081-7042a466771c&lt;/omnistackClusterId&gt;
+        &lt;logicalSize&gt;671744&lt;/logicalSize&gt;
+        &lt;consistency&gt;0&lt;/consistency&gt;
+        &lt;replicationAttempts&gt;0&lt;/replicationAttempts&gt;
+        &lt;hiveId&gt;559273a8-f909-477d-8ca9-c6707b9208c3&lt;/hiveId&gt;
+        &lt;name&gt;2020-06-15T11:10:00-04:00&lt;/name&gt;
+        &lt;replicationEndTime&gt;0&lt;/replicationEndTime&gt;
+        &lt;id&gt;3edb760f-d9ad-4975-b8e4-0e1bc0394644&lt;/id&gt;
+        &lt;hiveName&gt;pvc-e3fe7f3b-e00a-4b0d-9d65-89c3564081be_fcd&lt;/hiveName&gt;
+        &lt;backupId&gt;3edb760f-d9ad-4975-b8e4-0e1bc0394644&lt;/backupId&gt;
+        &lt;consistencyType&gt;2&lt;/consistencyType&gt;
+        &lt;replicaSet&gt;c59a1042-3e83-d0c9-c28a-71bf95b68d64&lt;/replicaSet&gt;
+        &lt;state&gt;4&lt;/state&gt;
+        &lt;hiveVolumeId&gt;559273a8-f909-477d-8ca9-c6707b9208c3&lt;/hiveVolumeId&gt;
+        &lt;backupStoreType&gt;0&lt;/backupStoreType&gt;
+    &lt;/Backup&gt;
+&lt;/CommandResult&gt;</code></pre>
+</li>
+<li>
+<p>Define a VolumeSnapshotContent object representing the pre-existing snapshot. The VolumeSnapshotContent <code>name</code> is a unique name of your choosing to represent the object in Kubernetes. The <code>deletionPolicy</code> enables you to configure what happens to a VolumeSnapshotContent object when the VolumeSnapshot object to which it is bound is deleted. The <code>deletionPolicy</code> of a volume snapshot can either be <code>Retain</code> or <code>Delete</code>. The <code>snapshotHandle</code> is the backup ID you retrieved in step 1. The volume snapshot reference <code>name</code> should be set to a unique name that you will set on the VolumeSnapshot object that will be bound to this VolumeSnapshotContent.</p>
+<pre class="highlight"><code class="language-yaml">apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshotContent
+metadata:
+  name: static-snap-content
+spec:
+  deletionPolicy: Delete
+  driver: csi.simplivity.hpe.com
+  source:
+    snapshotHandle: 3edb760f-d9ad-4975-b8e4-0e1bc0394644
+  volumeSnapshotRef:
+    name: static-snap-example
+    namespace: default</code></pre>
+</li>
+<li>
+<p>Create the VolumeSnapshotContent object.</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f static-snapshot-content.yaml</code></pre>
+</li>
+<li>
+<p>Define a VolumeSnapshot object. The <code>name</code> should match the volume snapshot reference name from the VolumeSnapshotContent object created in step 3. <code>volumeSnapshotContentName</code> specifies the name of the VolumeSnapshotContent object created in step 3.</p>
+<pre class="highlight"><code class="language-yaml">kind: VolumeSnapshot
+metadata:
+  name: static-snap-example
+spec:
+  source:
+    volumeSnapshotContentName: static-snap-content</code></pre>
+</li>
+<li>
+<p>Create the VolumeSnapshot object to bind the snapshot.</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f static-snapshot.yaml</code></pre>
+</li>
+<li>
+<p>Verify the VolumeSnapshot object was created in Kubernetes.</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe volumesnapshot static-snap-example
+Name:         static-snap-example
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  snapshot.storage.k8s.io/v1beta1
+Kind:         VolumeSnapshot
+Metadata:
+  Creation Timestamp:  2020-06-15T16:07:22Z
+  Finalizers:
+    snapshot.storage.kubernetes.io/volumesnapshot-as-source-protection
+    snapshot.storage.kubernetes.io/volumesnapshot-bound-protection
+  Generation:        1
+  Resource Version:  9789090
+  Self Link:         /apis/snapshot.storage.k8s.io/v1beta1/namespaces/default/volumesnapshots/static-snap-example
+  UID:               f90e5b74-cf68-40f2-bb28-95e85944d56b
+Spec:
+  Source:
+    Volume Snapshot Content Name:  static-snap-content
+Status:
+  Bound Volume Snapshot Content Name:  static-snap-content
+  Creation Time:                       2020-06-15T15:10:00Z
+  Ready To Use:                        true
+  Restore Size:                        0
+Events:                                &lt;none&gt;</code></pre>
+</li>
+</ol>
+<h2 id="restoring-a-volume-snapshot">Restoring a Volume Snapshot<a id="restore_volume_snapshot"></a></h2>
+<p>Once the VolumeSnapshot object is bound and ready to use, you can restore the volume using the VolumeSnapshotContent object. To do so, create a persistent volume claim which specifies the volume snapshot object as the volume source.</p>
+<h3 id="snapshot-restore-procedure">Snapshot Restore Procedure</h3>
+<ol>
+<li>
+<p>Define a PersistentVolumeClaim. The <code>dataSource</code> allows you to specify the snapshot being restored.</p>
+<pre class="highlight"><code class="language-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: www-web-restore-1
+spec:
+  storageClassName: svt-sc
+  dataSource:
+    name: www-web-snap-1
+    kind: VolumeSnapshot
+    apiGroup: snapshot.storage.k8s.io
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi</code></pre>
+</li>
+<li>
+<p>Create the PVC object.</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f snap-restore.yaml
+persistentvolumeclaim/www-web-restore-1 created</code></pre>
+</li>
+<li>
+<p>Verify the PVC was created successfully.</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe pvc www-web-restore-1
+Name:          www-web-restore-1
+Namespace:     default
+StorageClass:  svt-sc
+Status:        Bound
+Volume:        pvc-72fb5f0e-5a93-44fd-a5fe-c82339093115
+Labels:        &lt;none&gt;
+Annotations:   pv.kubernetes.io/bind-completed: yes
+              pv.kubernetes.io/bound-by-controller: yes
+              volume.beta.kubernetes.io/storage-provisioner: csi.simplivity.hpe.com
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      1Gi
+Access Modes:  RWO
+VolumeMode:    Filesystem
+DataSource:
+  APIGroup:  snapshot.storage.k8s.io
+  Kind:      VolumeSnapshot
+  Name:      www-web-snap-1
+Mounted By:  &lt;none&gt;
+Events:
+  Type    Reason                 Age                   From                                                                                             Message
+  ----    ------                 ----                  ----                                                                                             -------
+  Normal  Provisioning           6m6s                  csi.simplivity.hpe.com_svt-csi-controller-5844ff4c8c-jgv9k_2164c1a6-89af-4837-b6b6-c10015aa07c6  External provisioner is provisioning volume for claim "default/www-web-restore-1"
+  Normal  ExternalProvisioning   5m13s (x5 over 6m5s)  persistentvolume-controller                                                                      waiting for a volume to be created, either by external provisioner "csi.simplivity.hpe.com" or manually created by system administrator
+  Normal  ProvisioningSucceeded  5m10s                 csi.simplivity.hpe.com_svt-csi-controller-5844ff4c8c-jgv9k_2164c1a6-89af-4837-b6b6-c10015aa07c6  Successfully provisioned volume pvc-72fb5f0e-5a93-44fd-a5fe-c82339093115</code></pre>
+</li>
+</ol>
+<h2 id="deleting-a-volume-snapshot">Deleting a Volume Snapshot<a id="delete_volume_snapshot"></a></h2>
+<p>Snapshots can be deleted when no longer needed.</p>
+<h3 id="snapshot-delete-procedure">Snapshot Delete Procedure</h3>
+<ol>
+<li>
+<p>The VolumeSnapshotContent object <code>Deletion Policy</code> determines whether or not the underlying VolumeSnapshotContent object will be deleted or not when the VolumeSnapshot is deleted. If it is set to <code>Retain</code> then both the VolumeSnapshot and VolumeSnapshotContent object must be deleted to fully delete the snapshot. In this case, it is set to <code>Delete</code> and thus we only need to remove the VolumeSnapshot object.</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe volumesnapshotcontent snapcontent-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+Name:         snapcontent-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+Namespace:
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  snapshot.storage.k8s.io/v1beta1
+Kind:         VolumeSnapshotContent
+Metadata:
+  Creation Timestamp:  2020-06-12T19:00:42Z
+  Finalizers:
+    snapshot.storage.kubernetes.io/volumesnapshotcontent-bound-protection
+  Generation:        1
+  Resource Version:  8840185
+  Self Link:         /apis/snapshot.storage.k8s.io/v1beta1/volumesnapshotcontents/snapcontent-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+  UID:               15f8f342-e9d9-4039-8c26-4ec321a8f60e
+Spec:
+  Deletion Policy:  Delete
+  Driver:           csi.simplivity.hpe.com
+  Source:
+    Volume Handle:             202797ef-40e3-41ba-a8b1-3850cfc93901
+  Volume Snapshot Class Name:  hpe-simplivity-snapclass
+  Volume Snapshot Ref:
+    API Version:       snapshot.storage.k8s.io/v1beta1
+    Kind:              VolumeSnapshot
+    Name:              www-web-snap-1
+    Namespace:         default
+    Resource Version:  8840043
+    UID:               7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+Status:
+  Creation Time:    1591988468000000000
+  Ready To Use:     true
+  Restore Size:     1073741824
+  Snapshot Handle:  996730a3-6005-4f4c-a758-5203892faa0b
+Events:             &lt;none&gt;</code></pre>
+</li>
+<li>
+<p>Delete the VolumeSnapshot object.</p>
+<pre class="highlight"><code class="language-text">$ kubectl delete volumesnapshot www-web-snap-1
+volumesnapshot.snapshot.storage.k8s.io "www-web-snap-1" deleted</code></pre>
+</li>
+<li>
+<p>Verify the snapshot and content are removed.</p>
+<pre class="highlight"><code class="language-text">$ kubectl get volumesnapshot www-web-snap-1
+Error from server (NotFound): volumesnapshots.snapshot.storage.k8s.io "www-web-snap-1" not found
+$ kubectl get volumesnapshotcontent snapcontent-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc
+Error from server (NotFound): volumesnapshotcontents.snapshot.storage.k8s.io "snapcontent-7fa13b4b-f370-40c4-9946-4c7e2c72dcdc" not found</code></pre>
+</li>
+<li>
+<p>Verify that the backup has been deleted from HPE SimpliVity.</p>
+<pre class="highlight"><code class="language-text">$ svt-backup-show --pv pvc-e3fe7f3b-e00a-4b0d-9d65-89c3564081be_fcd --datastore svt-ds
+No backups found.</code></pre>
+</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../support-information/" class="btn btn-neutral float-right" title="Support Information">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../block-volumes/" class="btn btn-neutral" title="Block Volumes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../block-volumes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../support-information/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/navcleanup.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>

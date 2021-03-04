@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Configuring Topologies - HPE SimpliVity VMware CSI Driver</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../../css/hpedev.css" rel="stylesheet" />
+  <link href="../../css/customizations.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Configuring Topologies";
+    var mkdocs_page_input_path = "driver-deployment/configuring-topologies.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> HPE SimpliVity VMware CSI Driver</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Welcome</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">Overview</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../quickstart/">Quickstart Guide</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Prerequisites</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/prerequisites/">Prerequisites</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/setup-base-template/">Setup Base Template</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/setup-master-and-worker-nodes/">Setup Master and Worker Nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/install-cpi/">Install CPI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../prerequisites-deployment/install-csi-snapshot-controller/">Install CSI Snapshot Controller</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Driver Deployment</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Configuring Topologies</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#set-up-zones-in-an-hpe-simplivity-environment">Set Up Zones in an HPE SimpliVity Environment </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-zones-using-vsphere-tags">Create Zones Using vSphere Tags</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enable-zones-for-the-vsphere-cpi-and-hpe-simplivity-csi-driver-for-vsphere">Enable Zones for the vSphere CPI and HPE SimpliVity CSI Driver for vSphere </a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../uninstallation/">Uninstallation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Using CSI Driver</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../setup/">Setup HPE SimpliVity for CSI</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../using-topologies/">Using Topologies</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../block-volumes/">Block Volumes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../snapshot/">Volume Snapshots</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Support</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../support-information/">Support Information</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../known-issues/">Known Issues</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">HPE SimpliVity VMware CSI Driver</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Driver Deployment &raquo;</li>
+        
+      
+    
+    <li>Configuring Topologies</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD024 -->
+<h1 id="deployment-with-topology-for-hpe-simplivity-csi-driver-for-vsphere">Deployment with Topology for HPE SimpliVity CSI Driver for vSphere</h1>
+<p>In order to enable topology aware provisioning, you need to perform the following steps when deploying the Kubernetes cluster:</p>
+<ul>
+<li><a href="#set_up_zones_in_simplivity">Set Up Zones in an HPE SimpliVity Environment</a></li>
+<li><a href="#enable_zones_for_cpi_and_csi">Enable Zones for the vSphere CPI and HPE SimpliVity CSI Driver</a></li>
+</ul>
+<p>See <a href="../../using-topologies/">Using Topologies</a> for more information on when you might want to enable this feature and how to use it.</p>
+<h2 id="set-up-zones-in-an-hpe-simplivity-environment">Set Up Zones in an HPE SimpliVity Environment <a id="set_up_zones_in_simplivity"></a></h2>
+<p>The zone configuration will depend on your HPE SimpliVity environment. A common scenario is to create a zone per HPE SimpliVity cluster as the HPE SimpliVity datastores are available to all HPE OmniStack hosts in the cluster.</p>
+<p>In the following example, the HPE SimpliVity environment includes three clusters with Kubernetes node VMs located on all three clusters.</p>
+<p><img alt="TOPOLOGY" src="../../graphics/topology.png" /></p>
+<h2 id="create-zones-using-vsphere-tags">Create Zones Using vSphere Tags</h2>
+<p>Use vSphere tags to label zones in your vSphere environment. In this example, the HPE SimpliVity environment includes three clusters: cluster1, cluster2, and cluster3. The Kubernetes node VMs are distributed across the three clusters. Category tags are created for the Kubernetes regions and zones. Then the datacenter is tagged with a region and the clusters are tagged with zones.</p>
+<p>Make sure that you have appropriate tagging privileges that control your ability to work with tags. See <a href="https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.security.doc/GUID-2199584C-B422-4EEF-9340-5449E1FB7DAE.html">vSphere Tagging Privileges</a> in the vSphere Security documentation.</p>
+<p><strong>Note:</strong> Ancestors of node VMs, such as host, cluster, and data center, must have the ReadOnly role set for the vSphere user configured to use the CSI driver and CCM. This is required to allow reading tags and categories to prepare nodes' topology.</p>
+<ol>
+<li>
+<p>In the vSphere Client create two tag categories that will be used for identifying regions and zones in your environment. In this example, the categories are named k8s-region and k8s-zone.</p>
+<p>For information, see <a href="https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vcenterhost.doc/GUID-BA3D1794-28F2-43F3-BCE9-3964CB207FB6.html">Create, Edit, or Delete a Tag Category</a> in the vCenter Server and Host Management documentation.</p>
+<p><br></p>
+</li>
+<li>
+<p>Create tags for each zone and region in your environment. This example has one region and three zones (one per cluster).</p>
+<table>
+<thead>
+<tr>
+<th align="left"> Categories</th>
+<th align="left"> Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"> k8s-region        </td>
+<td align="left"> region-1</td>
+</tr>
+<tr>
+<td align="left"> k8s-zone          </td>
+<td align="left"> zone-a, zone-b, zone-c           </td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</li>
+<li>
+<p>Apply corresponding tags to the data center and clusters as indicated in the table.</p>
+<p>For information, see <a href="https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vcenterhost.doc/GUID-379F40D3-8CD6-449E-89CB-79C4E2683221.html">Assign or Remove a Tag</a> in the vCenter Server and Host Management documentation.</p>
+<table>
+<thead>
+<tr>
+<th align="left"> Categories</th>
+<th align="left"> Tags         </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"> datacenter     </td>
+<td align="left"> region-1     </td>
+</tr>
+<tr>
+<td align="left"> cluster1      </td>
+<td align="left"> zone-a       </td>
+</tr>
+<tr>
+<td align="left"> cluster1      </td>
+<td align="left"> zone-b       </td>
+</tr>
+<tr>
+<td align="left"> cluster1      </td>
+<td align="left"> zone-c       </td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h2 id="enable-zones-for-the-vsphere-cpi-and-hpe-simplivity-csi-driver-for-vsphere">Enable Zones for the vSphere CPI and HPE SimpliVity CSI Driver for vSphere <a id="enable_zones_for_cpi_and_csi"></a></h2>
+<p>After creating and applying topology tags in vSphere, the next step is to install the vSphere CPI and the HPE SimpliVity CSI driver using the zone and region categories.</p>
+<ol>
+<li>
+<p>Add Labels section to cloud-config when installing the vSphere CPI.</p>
+<p>Add a <code>Labels</code> section to the configmap cloud-config file, specifying the category names you created for the region and zone.</p>
+<pre class="highlight"><code class="language-bash">[Global]
+insecure-flag = "true"                # Set to true to use self-signed certificate
+
+[VirtualCenter "1.1.1.1"]             # vCenter IP
+insecure-flag = "true"                # Set to true to use self-signed certificate
+user = "administrator"                # Login ID
+password = "password"                 # Login Password
+port = "443"                          # vCenter Server Port, Default Port 443
+datacenters = "datacenter"            # Comma separated list of Datacenter names where Kubernetes node VMs are present.
+
+[Labels]
+region = k8s-region                   # vSphere category name for Kubernetes region
+zone = k8s-zone                       # vSphere category name for Kubernetes zone</code></pre>
+</li>
+<li>
+<p>Verify that your zones and regions are applied to the Kubernetes nodes.</p>
+<p>After installation, labels <code>failure-domain.beta.kubernetes.io/region</code> and <code>failure-domain.beta.kubernetes.io/zone</code> are applied to all nodes.</p>
+<pre class="highlight"><code class="language-text">$ kubectl get nodes -L failure-domain.beta.kubernetes.io/zone -L failure-domain.beta.kubernetes.io/region
+NAME           STATUS   ROLES    AGE   VERSION   ZONE     REGION
+k8s-r1za-m01   Ready    master   13h   v1.17.5   zone-a   region-1
+k8s-r1za-w01   Ready    &lt;none&gt;   13h   v1.17.5   zone-a   region-1
+k8s-r1za-w02   Ready    &lt;none&gt;   13h   v1.17.5   zone-a   region-1
+k8s-r1za-w03   Ready    &lt;none&gt;   13h   v1.17.5   zone-a   region-1
+k8s-r1zb-m01   Ready    master   13h   v1.17.5   zone-b   region-1
+k8s-r1zb-w01   Ready    &lt;none&gt;   13h   v1.17.5   zone-b   region-1
+k8s-r1zb-w02   Ready    &lt;none&gt;   13h   v1.17.5   zone-b   region-1
+k8s-r1zb-w03   Ready    &lt;none&gt;   13h   v1.17.5   zone-b   region-1
+k8s-r1zc-m01   Ready    master   13h   v1.17.5   zone-c   region-1
+k8s-r1zc-w01   Ready    &lt;none&gt;   13h   v1.17.5   zone-c   region-1
+k8s-r1zc-w02   Ready    &lt;none&gt;   13h   v1.17.5   zone-c   region-1
+k8s-r1zc-w03   Ready    &lt;none&gt;   13h   v1.17.5   zone-c   region-1</code></pre>
+</li>
+<li>
+<p>Add Labels section to cloud-config when installing the CSI driver.</p>
+<p>In the credential secret file, add a <code>Labels</code> section with entries for the region and zone categories you created in vSphere.</p>
+<pre class="highlight"><code class="language-bash">[Global]
+cluster-id = "demo-cluster-id"        # Cluster Name, Each Kubernetes cluster should have it's own unique cluster-id set in the csi-vsphere.conf file
+
+[VirtualCenter "1.1.1.1"]             # vCenter IP
+insecure-flag = "true"                # Set to true to use self-signed certificate
+user = "administrator"                # Login ID
+password = "password"                 # Login Password
+port = "443"                          # vCenter Server Port, Default Port 443
+datacenters = "datacenter"            # Comma separated list of Datacenter names where Kubernetes node VMs are present.
+
+[HPESimpliVity]
+ip = "1.1.1.2"                        # Management Virtual Appliance (MVA) IP Address or HPE SimpliVity OVC Management IP address
+user = "simplivity_user"              # Login ID of HPE SimpliVity OVC
+password = "simplivity_password"      # Password of HPE SimpliVity OVC
+
+[Labels]
+region = k8s-region                   # vSphere category name for Kubernetes region
+zone = k8s-zone                       # vSphere category name for Kubernetes zone</code></pre>
+</li>
+<li>
+<p>Verify that your CSI driver installation has the topology feature enabled.</p>
+<pre class="highlight"><code class="language-text">$ kubectl get csinodes -o jsonpath='{range .items[*]}{.metadata.name} {.spec}{"\n"}{end}'
+k8s-r1za-m01 map[drivers:&lt;nil&gt;]
+k8s-r1za-w01 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1za-w01 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1za-w02 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1za-w02 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1za-w03 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1za-w03 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1zb-m01 map[drivers:&lt;nil&gt;]
+k8s-r1zb-w01 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1zb-w01 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1zb-w02 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1zb-w02 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1zb-w03 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1zb-w03 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1zc-m01 map[drivers:&lt;nil&gt;]
+k8s-r1zc-w01 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1zc-w01 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1zc-w02 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1zc-w02 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]
+k8s-r1zc-w03 map[drivers:[map[name:csi.simplivity.hpe.com nodeID:k8s-r1zc-w03 topologyKeys:[failure-domain.beta.kubernetes.io/region failure-domain.beta.kubernetes.io/zone]]]]</code></pre>
+</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../uninstallation/" class="btn btn-neutral float-right" title="Uninstallation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>©️ Copyright 2021 - Hewlett Packard Enterprise Development LP</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../uninstallation/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../js/navcleanup.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(false);
+        };
+    </script>
+
+</body>
+</html>
