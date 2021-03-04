@@ -158,7 +158,7 @@ Topology-aware provisioning allows Kubernetes to make intelligent decisions and 
 
 This argument controls which topology information is passed to `CreateVolumeRequest.AccessibilityRequirements` in case of a delayed binding.
 
-For information on how this option changes the result, see the table at [https://github.com/kubernetes-csi/external-provisioner#topology-support](https://github.com/kubernetes-csi/external-provisioner#topology-support). This option has no effect if the topology feature is disabled or the immediate volume binding mode is used.
+For information on how this option changes the result, see this [table](https://github.com/kubernetes-csi/external-provisioner#topology-support). This option has no effect if the topology feature is disabled or the immediate volume binding mode is used.
 
 1. Create a StorageClass with the `volumeBindingMode` parameter set to `WaitForFirstConsumer`.
 

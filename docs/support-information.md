@@ -5,7 +5,6 @@
 
 Consult the HPE OmniStack documentation for VM limits, which applies to persistent volumes (PV) as well. The limits may be more restrictive depending on the hardware configuration.
 
-<br>
 **Note:** Only a single vCenter is supported by HPE SimpliVity CSI Driver for vSphere. Make sure Kubernetes node VMs do not spread across multiple vCenter servers.
 
 ## Compatibility Matrix <a id="compatibility_matrix"></a>
@@ -79,4 +78,4 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 ## Additional Support Information
 
-* To access documentation and support services, go to the Hewlett Packard Enterprise Support Center website: [https://www.hpe.com/support/hpesc](https://www.hpe.com/support/hpesc)
+* To access documentation and support services, visit the [Hewlett Packard Enterprise Support Center](https://www.hpe.com/support/hpesc).
