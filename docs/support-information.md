@@ -37,7 +37,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 |    Kubernetes Version    |    HPE SimpliVity CSI v1.0.0    |
 | ------------------------ | ------------------------------- |
 | 1.17                     | Supported                       |
-| 1.18                     | Not Supported                   |
+| 1.18                     | Supported                       |
 
 <br>
 
