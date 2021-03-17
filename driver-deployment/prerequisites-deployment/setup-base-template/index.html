@@ -305,7 +305,7 @@ deb https://apt.kubernetes.io/ kubernetes-xenial main</code></pre>
 <p>Update apt with the new repositories just added</p>
 <pre class="highlight"><code class="language-bash">$ sudo apt update</code></pre>
 <p>Install DockerCE</p>
-<pre class="highlight"><code class="language-bash"># update to recommended version of docker for k8s 1.17
+<pre class="highlight"><code class="language-bash"># install the appropriate version of docker based on the k8s version, refer to the example given below for k8s 1.17
 $ sudo apt install docker-ce=5:19.03.4~3-0~ubuntu-bionic -y</code></pre>
 <p>Setup Docker's Daemon file /etc/docker/daemon.json</p>
 <pre class="highlight"><code class="language-json"># Contents of /etc/docker/daemon.json
@@ -329,7 +329,8 @@ $ sudo docker info | egrep "Server Version|Cgroup Driver"
 Server Version: 19.03.4-ce
 Cgroup Driver: systemd</code></pre>
 <h2 id="install-kubernetes">Install Kubernetes</h2>
-<pre class="highlight"><code class="language-text">$ sudo apt install -qy kubeadm=1.17.0-00 kubelet=1.17.0-00 kubectl=1.17.0-00</code></pre>
+<pre class="highlight"><code class="language-text"># install the desired version of k8s, similar to the example below
+$ sudo apt install -qy kubeadm=1.17.0-00 kubelet=1.17.0-00 kubectl=1.17.0-00</code></pre>
 <p>Hold Kubernetes packages at their installed version so they do not upgrade unexpectedly on an apt upgrade</p>
 <pre class="highlight"><code class="language-text">$ sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
 <h2 id="install-network-for-pod-nodes">Install Network for Pod nodes</h2>
