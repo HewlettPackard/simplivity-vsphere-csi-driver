@@ -234,7 +234,7 @@ $ sudo apt update
 Install DockerCE
 
 ```bash
-# update to recommended version of docker for k8s 1.17
+# install the appropriate version of docker based on the k8s version, refer to the example given below for k8s 1.17
 $ sudo apt install docker-ce=5:19.03.4~3-0~ubuntu-bionic -y
 ```
 
@@ -270,6 +270,7 @@ Cgroup Driver: systemd
 ## Install Kubernetes
 
 ```text
+# install the desired version of k8s, similar to the example below
 $ sudo apt install -qy kubeadm=1.17.0-00 kubelet=1.17.0-00 kubectl=1.17.0-00
 ```
 

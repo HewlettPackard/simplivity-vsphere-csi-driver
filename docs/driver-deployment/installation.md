@@ -50,7 +50,7 @@ rm csi-vsphere.conf
 
 ## Create RBAC for HPE SimpliVity CSI Driver
 
-Download and install the [RBAC yaml](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/rbac/svt-csi-controller-rbac.yaml) from the HPE Simplivity CSI Driver GitHub repo. This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.
+Download and install the appropriate RBAC yaml for corresponding Kubernetes version from the [HPE Simplivity CSI Driver GitHub repo](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/). This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.
 
 ```text
 $ kubectl apply -f svt-csi-controller-rbac.yaml
@@ -61,7 +61,7 @@ clusterrolebinding.rbac.authorization.k8s.io/svt-csi-controller-binding created
 
 ## Install HPE SimpliVity CSI Driver
 
-Download and install the HPE SimpliVity [controller-deployment](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/deploy/svt-csi-controller-deployment.yaml) and [node-ds](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/1.17/deploy/svt-csi-node-ds.yaml) yaml files. The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every worker node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again use kubectl to import the manifest into your cluster.
+Download and install the HPE SimpliVity controller-deployment and node-ds yaml files for corresponding Kubernetes version from the [HPE Simplivity CSI Driver GitHub repo](https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/). The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every worker node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again use kubectl to import the manifest into your cluster.
 
 ```text
 $ kubectl apply -f svt-csi-controller-deployment.yaml
