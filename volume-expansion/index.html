@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Support Information - HPE SimpliVity VMware CSI Driver</title>
+  <title>Volume expansion - HPE SimpliVity VMware CSI Driver</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -20,8 +20,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Support Information";
-    var mkdocs_page_input_path = "support-information.md";
+    var mkdocs_page_name = "Volume expansion";
+    var mkdocs_page_input_path = "volume-expansion.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -91,18 +91,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Support</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Support Information</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#limits">Limits</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#compatibility-matrix">Compatibility Matrix </a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#additional-support-information">Additional Support Information</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support-information/">Support Information</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../known-issues/">Known Issues</a>
                     </li>
@@ -127,12 +117,8 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Support &raquo;</li>
-        
-      
     
-    <li>Support Information</li>
+    <li>Volume expansion</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -144,181 +130,105 @@
             <div class="section">
               
                 <!-- markdownlint-disable MD033 -->
-<h1 id="support-information">Support Information</h1>
-<h2 id="limits">Limits</h2>
-<p>Consult the HPE OmniStack documentation for VM limits, which applies to persistent volumes (PV) as well. The limits may be more restrictive depending on the hardware configuration.</p>
-<p><strong>Note:</strong> Only a single vCenter is supported by HPE SimpliVity CSI Driver for vSphere. Make sure Kubernetes node VMs do not spread across multiple vCenter servers.</p>
-<h2 id="compatibility-matrix">Compatibility Matrix <a id="compatibility_matrix"></a></h2>
-<h3 id="hpe-omnistack-for-vsphere-compatibility">HPE OmniStack for vSphere Compatibility</h3>
-<p>The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with vSphere releases.</p>
-<table>
-<thead>
-<tr>
-<th>   HPE SimpliVity CSI Versions  </th>
-<th>    HPE OmniStack Version    </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>              1.0.0              </td>
-<td>            4.1.0            </td>
-</tr>
-<tr>
-<td>              2.0.0              </td>
-<td>            4.1.0            </td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h3 id="vsphereesxi-compatibility">vSphere/ESXi Compatibility</h3>
-<p>The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with vSphere releases.</p>
-<table>
-<thead>
-<tr>
-<th>   HPE SimpliVity CSI Versions  </th>
-<th>    vSphere/ESXi Version  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>              1.0.0              </td>
-<td>           6.7U3           </td>
-</tr>
-<tr>
-<td>              2.0.0              </td>
-<td>            7.0</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h3 id="kubernetes-compatibility">Kubernetes Compatibility</h3>
-<p>The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with Kubernetes releases.</p>
-<table>
-<thead>
-<tr>
-<th>   HPE SimpliVity CSI Versions  </th>
-<th>    Kubernetes Versions  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>              1.0.0              </td>
-<td>          1.17, 1.18       </td>
-</tr>
-<tr>
-<td>              2.0.0              </td>
-<td>            1.20</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h3 id="vsphere-cpi-compatibility">vSphere CPI Compatibility</h3>
-<p>The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with Kubernetes releases.</p>
-<table>
-<thead>
-<tr>
-<th>   HPE SimpliVity CSI Versions  </th>
-<th>    vSphere CPI Versions  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>              1.0.0              </td>
-<td>            1.1.0          </td>
-</tr>
-<tr>
-<td>              2.0.0              </td>
-<td>            1.20.0</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h3 id="csi-snapshot-controller-compatibility">CSI Snapshot Controller Compatibility</h3>
-<p>The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with Kubernetes releases.</p>
-<table>
-<thead>
-<tr>
-<th>   HPE SimpliVity CSI Versions  </th>
-<th>    CSI Snapshot Controller Versions  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>              1.0.0              </td>
-<td>                  2.1.1                </td>
-</tr>
-<tr>
-<td>              2.0.0              </td>
-<td>                  4.0.0</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h2 id="features">Features</h2>
-<table>
-<thead>
-<tr>
-<th> Feature</th>
-<th> Supported</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> Datastores supported        </td>
-<td> SimpliVity datastores only        </td>
-</tr>
-<tr>
-<td> Static Provisioning</td>
-<td> Yes</td>
-</tr>
-<tr>
-<td> Dynamic Provisioning</td>
-<td> Yes</td>
-</tr>
-<tr>
-<td> Access mode</td>
-<td> RWO</td>
-</tr>
-<tr>
-<td> Volume Topology/Zones</td>
-<td> Yes</td>
-</tr>
-<tr>
-<td> Snapshots</td>
-<td> Yes</td>
-</tr>
-<tr>
-<td> Extend Volume</td>
-<td> No</td>
-</tr>
-<tr>
-<td> Encryption</td>
-<td> No</td>
-</tr>
-<tr>
-<td> Offline Volume Expansion</td>
-<td>Yes (v2.0.0 onwards)</td>
-</tr>
-</tbody>
-</table>
-<p><br></p>
-<h2 id="additional-support-information">Additional Support Information</h2>
-<ul>
-<li>To access documentation and support services, visit the <a href="https://support.hpe.com">Hewlett Packard Enterprise Support Center</a>.</li>
-</ul>
+<!-- markdownlint-disable MD014 -->
+<h1 id="hpe-simplivity-csi-driver-offline-volume-expansion">HPE SimpliVity CSI Driver - Offline Volume Expansion</h1>
+<p>CSI Volume Expansion was introduced as an alpha feature in Kubernetes 1.14 and it was promoted to beta in Kubernetes 1.16. CSI Offline Volume Expansion is available from v2.0.0 of the HPE SimpliVity Driver. Currently, online expansion(ie, When the PVC is being used by a Pod i.e it is mounted on a node, the resulting volume expansion) is not supported.</p>
+<p>The offline volume expansion feature of CSI is basically the ability to extend / grow a Kubernetes Persistent Volume (PV) when it is not attached to a node. Currently, Offline Volume Expansion is supported only on dynamically created volumes.</p>
+<h2 id="requirements">Requirements</h2>
+<p>Make sure all the ESXi hosts of the cluster are on the same version as the vCenter. For volume expansion to work, the vCenter and all the ESX hosts of the cluster need to be on the supported versions of the feature i.e version 7.0 and above, otherwise volume resize operation fails with A general system error occurred: Failed to lock the file: api = DiskLib_Grow error.</p>
+<h3 id="offline-volume-expansion">Offline Volume Expansion</h3>
+<p>Create a new StorageClass or edit the existing StorageClass to set allowVolumeExpansion to true.</p>
+<pre class="highlight"><code class="language-yaml"># Contents of example-sc.yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: simplivity-sc
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: csi.simplivity.hpe.com
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+parameters:
+  # datastoreurl and storagepolicyname are mutually exclusive.
+  # datastoreurl: "ds:///vmfs/volumes/9c8391e9-05250c25/"  # Storage URL, found under storage tab in vCenter
+  # storagepolicyname: "policy-name"  # Policy on selected datastore, from vCenter
+  # Optional Parameter
+  fstype: "ext4"</code></pre>
+<p>Create this StorageClass into the Kubernetes Cluster:</p>
+<pre class="highlight"><code class="language-text">$ kubectl create -f example-sc.yaml</code></pre>
+<p>Define a PersistentVolumeClaim using the above StorageClass and create a PersistentVolumeClaim in the Kubernetes Cluster:</p>
+<pre class="highlight"><code class="language-yaml"># Contents of example-pvc.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: simplivity-sc</code></pre>
+<pre class="highlight"><code class="language-text">$ kubectl create -f example-pvc.yaml</code></pre>
+<p>Now patch the created PVC to increase its requested storage size (in this case, to 4Gi):</p>
+<pre class="highlight"><code class="language-text"># Alternatively, the size can be changed by modifying the spec using kubectl edit pvc example-pvc
+$ kubectl patch pvc example-pvc -p '{"spec": {"resources": {"requests": {"storage": "4Gi"}}}}'
+persistentvolumeclaim/example-pvc patched</code></pre>
+<p>This will trigger an expansion in the volume associated with the PVC in vSphere Cloud Native Storage and also gets reflected on the capacity of the corresponding PV</p>
+<pre class="highlight"><code class="language-text">$ kubectl describe pvc example-pvc
+Name:          example-pvc
+Namespace:     default
+StorageClass:  simplivity-sc
+Status:        Bound
+Volume:        pvc-f6fb41c4-fda5-4768-9a68-3cb8b27967da
+Labels:        &lt;none&gt;
+Annotations:   pv.kubernetes.io/bind-completed: yes
+               pv.kubernetes.io/bound-by-controller: yes
+               volume.beta.kubernetes.io/storage-provisioner: csi.simplivity.hpe.com
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      4Gi
+Access Modes:  RWO
+VolumeMode:    Filesystem
+Mounted By:    &lt;none&gt;
+Events:
+  Type    Reason                 Age                   From                                                                              Message
+  ----    ------                 ----                  ----                                                                              -------
+  Normal  Provisioning           3m48s                 csi.simplivity.hpe.com_svt-csi-controller-0_e9cdfeaf-603c-45a4-837b-3e5b86beb6d7  External provisioner is provisioning volume for claim "default/example-pvc"
+  Normal  ExternalProvisioning   3m8s (x4 over 3m48s)  persistentvolume-controller                                                       waiting for a volume to be created, either by external provisioner "csi.simplivity.hpe.com" or manually created by system administrator
+  Normal  ProvisioningSucceeded  2m56s                 csi.simplivity.hpe.com_svt-csi-controller-0_e9cdfeaf-603c-45a4-837b-3e5b86beb6d7  Successfully provisioned volume pvc-f6fb41c4-fda5-4768-9a68-3cb8b27967da</code></pre>
+<pre class="highlight"><code class="language-text">$ kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                         STORAGECLASS    REASON   AGE
+pvc-f6fb41c4-fda5-4768-9a68-3cb8b27967da   4Gi        RWO            Delete           Bound    default/example-pvc           simplivity-sc            8m27s
+
+$ kubectl describe pv pvc-f6fb41c4-fda5-4768-9a68-3cb8b27967da
+Name:            pvc-f6fb41c4-fda5-4768-9a68-3cb8b27967da
+Labels:          &lt;none&gt;
+Annotations:     pv.kubernetes.io/provisioned-by: csi.simplivity.hpe.com
+Finalizers:      [kubernetes.io/pv-protection]
+StorageClass:    simplivity-sc
+Status:          Bound
+Claim:           default/example-pvc
+Reclaim Policy:  Delete
+Access Modes:    RWO
+VolumeMode:      Filesystem
+Capacity:        4Gi
+Node Affinity:   &lt;none&gt;
+Message:
+Source:
+    Type:              CSI (a Container Storage Interface (CSI) volume source)
+    Driver:            csi.simplivity.hpe.com
+    VolumeHandle:      d3cff17d-334a-4217-b55d-e478648c5b8d
+    ReadOnly:          false
+    VolumeAttributes:      datastoreurl=ds:///vmfs/volumes/9c8391e9-05250c25/
+                          fstype=ext4
+                          storage.kubernetes.io/csiProvisionerIdentity=1589547226925-8081-csi.simplivity.hpe.com
+                          type=HPE SimpliVity CNS Block Volume
+Events:                &lt;none&gt;</code></pre>
+<p>Note that if a PVC, that is being used by a pod, is expanded, then the expansion will fail. However, once the pod is no longer using the PVC, then the expansion that failed  earlier, will be attempted.</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../known-issues/" class="btn btn-neutral float-right" title="Known Issues">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../snapshot/" class="btn btn-neutral" title="Volume Snapshots"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -344,10 +254,6 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../snapshot/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../known-issues/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

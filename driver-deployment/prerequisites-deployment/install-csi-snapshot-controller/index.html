@@ -144,10 +144,10 @@
                 <!-- markdownlint-disable MD014 -->
 <h1 id="installing-csi-snapshot-controller">Installing CSI Snapshot Controller</h1>
 <p>To enable the HPE SimpliVity CSI to take snapshots install the <a href="https://github.com/kubernetes-csi/external-snapshotter">CSI Snapshot Controller</a> on each cluster</p>
-<p>Download the yaml files from</p>
+<p>Download the yaml files from the GitHub repo of CSI Snapshotter. Refer to the <a href="../../../support-information/">support information page</a> to download the appropriate yamls according to the driver version.</p>
 <ul>
-<li><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/config/crd">CSI Snapshot CRDs</a></li>
-<li><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/snapshot-controller">CSI Snapshot Controller</a></li>
+<li><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/v4.0.0/client/config/crd">CSI Snapshot CRDs</a></li>
+<li><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/v4.0.0/deploy/kubernetes/snapshot-controller">CSI Snapshot Controller</a></li>
 </ul>
 <p>In the below examples we are using namespace <strong><em>kube-system</em></strong>, which is a good place to store infrastructure related resources in Kubernetes.</p>
 <p>In <em>setup-snapshot-controller.yaml</em>, update the namespace and image version. The CSI snapshot controller image version should be a compatible version from the table in <a href="../../../support-information/">Support Information</a>.</p>
@@ -156,7 +156,7 @@
 13   namespace: kube-system    # Use kube-system namespace
 14 spec:</code></pre>
 <pre class="highlight"><code class="language-yaml">27         - name: snapshot-controller
-28           image: quay.io/k8scsi/snapshot-controller:v2.1.1</code></pre>
+28           image: quay.io/k8scsi/snapshot-controller:v4.0.0</code></pre>
 <p>Update the namespace values in <em>rbac-snapshot-controller.yaml</em></p>
 <pre class="highlight"><code class="language-yaml">9  kind: ServiceAccount
 10 metadata:

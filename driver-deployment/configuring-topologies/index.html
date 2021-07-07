@@ -156,12 +156,12 @@
 <p><img alt="TOPOLOGY" src="../../graphics/topology.png" /></p>
 <h2 id="create-zones-using-vsphere-tags">Create Zones Using vSphere Tags</h2>
 <p>Use vSphere tags to label zones in your vSphere environment. In this example, the HPE SimpliVity environment includes three clusters: cluster1, cluster2, and cluster3. The Kubernetes node VMs are distributed across the three clusters. Category tags are created for the Kubernetes regions and zones. Then the datacenter is tagged with a region and the clusters are tagged with zones.</p>
-<p>Make sure that you have appropriate tagging privileges that control your ability to work with tags. See <a href="https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.security.doc/GUID-2199584C-B422-4EEF-9340-5449E1FB7DAE.html">vSphere Tagging Privileges</a> in the vSphere Security documentation.</p>
+<p>Make sure that you have appropriate tagging privileges that control your ability to work with tags. See <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.security.doc/GUID-2199584C-B422-4EEF-9340-5449E1FB7DAE.html">vSphere Tagging Privileges</a> in the vSphere Security documentation.</p>
 <p><strong>Note:</strong> Ancestors of node VMs, such as host, cluster, and data center, must have the ReadOnly role set for the vSphere user configured to use the CSI driver and CCM. This is required to allow reading tags and categories to prepare nodes' topology.</p>
 <ol>
 <li>
 <p>In the vSphere Client create two tag categories that will be used for identifying regions and zones in your environment. In this example, the categories are named k8s-region and k8s-zone.</p>
-<p>For information, see <a href="https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vcenterhost.doc/GUID-BA3D1794-28F2-43F3-BCE9-3964CB207FB6.html">Create, Edit, or Delete a Tag Category</a> in the vCenter Server and Host Management documentation.</p>
+<p>For information, see <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-BA3D1794-28F2-43F3-BCE9-3964CB207FB6.html">Create, Edit, or Delete a Tag Category</a> in the vCenter Server and Host Management documentation.</p>
 <p><br></p>
 </li>
 <li>
@@ -188,7 +188,7 @@
 </li>
 <li>
 <p>Apply corresponding tags to the data center and clusters as indicated in the table.</p>
-<p>For information, see <a href="https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vcenterhost.doc/GUID-379F40D3-8CD6-449E-89CB-79C4E2683221.html">Assign or Remove a Tag</a> in the vCenter Server and Host Management documentation.</p>
+<p>For information, see <a href="https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-379F40D3-8CD6-449E-89CB-79C4E2683221.html">Assign or Remove a Tag</a> in the vCenter Server and Host Management documentation.</p>
 <table>
 <thead>
 <tr>
@@ -276,6 +276,10 @@ password = "simplivity_password"      # Password of HPE SimpliVity OVC
 [Labels]
 region = k8s-region                   # vSphere category name for Kubernetes region
 zone = k8s-zone                       # vSphere category name for Kubernetes zone</code></pre>
+</li>
+<li>
+<p>Make sure <code>external-provisioner</code> is deployed with the arguments <code>--feature-gates=Topology=true</code> and <code>--strict-topology</code> enabled.</p>
+<p>Uncomment the lines following the comment 'needed for topology aware setup' in the <code>svt-csi-controller-deployment.yaml</code> file.</p>
 </li>
 <li>
 <p>Verify that your CSI driver installation has the topology feature enabled.</p>

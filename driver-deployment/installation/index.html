@@ -146,7 +146,7 @@
                 <!-- markdownlint-disable MD014 -->
 <h1 id="install-hpe-simplivity-container-storage-interface-csi-driver-for-vsphere">Install HPE SimpliVity Container Storage Interface (CSI) driver for vSphere</h1>
 <p>After the VMware CPI and CSI snapshot controller are installed successfully, install the HPE SimpliVity CSI Driver. If those have not been installed please visit the <a href="../prerequisites-deployment/prerequisites/">prerequisites</a> page before proceeding.</p>
-<p><strong>Note</strong> that this installation guide only applies to Vanilla Kubernetes clusters on VMware 6.7u3</p>
+<p><strong>Note</strong> that this installation guide only applies to Vanilla Kubernetes clusters on VMware</p>
 <p>All steps are performed from the master node</p>
 <h2 id="create-a-csi-secret">Create a CSI Secret</h2>
 <p>For the driver to access both VMware and the HPE SimpliVity Appliance, a set of credentials need to be passed in through a Kubernetes secret. This is also where the <a href="../configuring-topologies/">topology</a> can be defined. Create a file <em>csi-vsphere.conf</em></p>
@@ -177,13 +177,13 @@ vsphere-config-secret   Opaque   1      12s</code></pre>
 <p>After creating the secret in Kubernetes, remove the file for security.</p>
 <pre class="highlight"><code class="language-text">rm csi-vsphere.conf</code></pre>
 <h2 id="create-rbac-for-hpe-simplivity-csi-driver">Create RBAC for HPE SimpliVity CSI Driver</h2>
-<p>Download and install the appropriate RBAC yaml for corresponding Kubernetes version from the <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/">HPE Simplivity CSI Driver GitHub repo</a>. This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.</p>
+<p>Download and install the appropriate RBAC yaml from the <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/">HPE Simplivity CSI Driver GitHub repo</a>. This creates a Role, ServiceAccount and ClusterRoleBindings for the HPE SimpliVity Driver.</p>
 <pre class="highlight"><code class="language-text">$ kubectl apply -f svt-csi-controller-rbac.yaml
 serviceaccount/svt-csi-controller created
 clusterrole.rbac.authorization.k8s.io/svt-csi-controller-role created
 clusterrolebinding.rbac.authorization.k8s.io/svt-csi-controller-binding created</code></pre>
 <h2 id="install-hpe-simplivity-csi-driver">Install HPE SimpliVity CSI Driver</h2>
-<p>Download and install the HPE SimpliVity controller-deployment and node-ds yaml files for corresponding Kubernetes version from the <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/">HPE Simplivity CSI Driver GitHub repo</a>. The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every worker node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again use kubectl to import the manifest into your cluster.</p>
+<p>Download and install the appropriate HPE SimpliVity controller-deployment and node-ds yaml files from the <a href="https://github.com/HewlettPackard/simplivity-vsphere-csi-driver/blob/master/manifests/">HPE Simplivity CSI Driver GitHub repo</a>. The controller-deployment has the Deployment for the CSI controller, CSI attacher, CSI Provisioner and SVT syncer pods (the latter is used by our new Cloud Native Storage feature). The node-ds is a DaemonSet for the CSI component that will run on every worker node. It also has the definition for some of the new CRDs (Custom Resource Definitions) which we shall see shortly. Once again use kubectl to import the manifest into your cluster.</p>
 <pre class="highlight"><code class="language-text">$ kubectl apply -f svt-csi-controller-deployment.yaml
 deployment.apps/svt-csi-controller created
 csidriver.storage.k8s.io/csi.simplivity.hpe.com created
