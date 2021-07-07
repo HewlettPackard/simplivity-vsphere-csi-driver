@@ -40,6 +40,7 @@ nav:
         - 'Using Topologies': 'using-topologies.md'
         - 'Block Volumes': 'block-volumes.md'
         - 'Volume Snapshots': 'snapshot.md'
+        - 'Offline Volume Expansion': 'volume-expansion.md'
     - Support:
         - 'Support Information': 'support-information.md'
         - 'Known Issues': 'known-issues.md'
