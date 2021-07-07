@@ -3,10 +3,10 @@
 
 To enable the HPE SimpliVity CSI to take snapshots install the [CSI Snapshot Controller](https://github.com/kubernetes-csi/external-snapshotter) on each cluster
 
-Download the yaml files from
+Download the yaml files from the GitHub repo of CSI Snapshotter. Refer to the [support information page](../../support-information.md) to download the appropriate yamls according to the driver version.
 
-- [CSI Snapshot CRDs](https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/config/crd)
-- [CSI Snapshot Controller](https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/snapshot-controller)
+- [CSI Snapshot CRDs](https://github.com/kubernetes-csi/external-snapshotter/tree/v4.0.0/client/config/crd)
+- [CSI Snapshot Controller](https://github.com/kubernetes-csi/external-snapshotter/tree/v4.0.0/deploy/kubernetes/snapshot-controller)
 
 In the below examples we are using namespace ***kube-system***, which is a good place to store infrastructure related resources in Kubernetes.
 
@@ -21,7 +21,7 @@ In *setup-snapshot-controller.yaml*, update the namespace and image version. The
 
 ```yaml
 27         - name: snapshot-controller
-28           image: quay.io/k8scsi/snapshot-controller:v2.1.1
+28           image: quay.io/k8scsi/snapshot-controller:v4.0.0
 ```
 
 Update the namespace values in *rbac-snapshot-controller.yaml*

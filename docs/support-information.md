@@ -13,9 +13,10 @@ Consult the HPE OmniStack documentation for VM limits, which applies to persiste
 
 The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with vSphere releases.
 
-|    HPE OmniStack Version    |    HPE SimpliVity CSI v1.0.0    |
-| --------------------------- | ------------------------------- |
-| HPE OmniStack 4.1.0         | Supported                       |
+|   HPE SimpliVity CSI Versions   |    HPE OmniStack Version    |
+| ------------------------------- | --------------------------- |
+|              1.0.0              |            4.1.0            |
+|              2.0.0              |            4.1.0            |
 
 <br>
 
@@ -23,10 +24,10 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with vSphere releases.
 
-|    vSphere/ESXi Version         |    HPE SimpliVity CSI v1.0.0    |
-| ------------------------------- | ------------------------------- |
-| vSphere 6.7U3/ESXi 6.7U3        | Supported                       |
-| vSphere 7.0/ESXi 7.0            | Not Supported                   |
+|   HPE SimpliVity CSI Versions   |    vSphere/ESXi Version   |
+| ------------------------------- | ------------------------- |
+|              1.0.0              |           6.7U3           |
+|              2.0.0              |            7.0            |
 
 <br>
 
@@ -34,10 +35,10 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with Kubernetes releases.
 
-|    Kubernetes Version    |    HPE SimpliVity CSI v1.0.0    |
-| ------------------------ | ------------------------------- |
-| 1.17                     | Supported                       |
-| 1.18                     | Supported                       |
+|   HPE SimpliVity CSI Versions   |    Kubernetes Versions    |
+| ------------------------------- | ------------------------- |
+|              1.0.0              |          1.17, 1.18       |
+|              2.0.0              |            1.20           |
 
 <br>
 
@@ -45,9 +46,10 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with Kubernetes releases.
 
-|   vSphere CPI Version    |    HPE SimpliVity CSI v1.0.0    |
-| ------------------------ | ------------------------------- |
-| 1.1.0                    | Supported                       |
+|   HPE SimpliVity CSI Versions   |    vSphere CPI Versions   |
+| ------------------------------- | ------------------------- |
+|              1.0.0              |            1.1.0          |
+|              2.0.0              |            1.20.0         |
 
 <br>
 
@@ -55,9 +57,10 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 
 The following table describes compatibility of the HPE SimpliVity CSI driver for vSphere releases with Kubernetes releases.
 
-| CSI Snapshot Controller Version    |    HPE SimpliVity CSI v1.0.0    |
-| ---------------------------------- | ------------------------------- |
-| 2.1.1                              | Supported                       |
+|   HPE SimpliVity CSI Versions   |    CSI Snapshot Controller Versions   |
+| ------------------------------- | ------------------------------------- |
+|              1.0.0              |                  2.1.1                |
+|              2.0.0              |                  4.0.0                |
 
 <br>
 
@@ -70,9 +73,10 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | Dynamic Provisioning        | Yes                               |
 | Access mode                 | RWO                               |
 | Volume Topology/Zones       | Yes                               |
-| Snapshots                   | Yes (beta)                        |
+| Snapshots                   | Yes                               |
 | Extend Volume               | No                                |
 | Encryption                  | No                                |
+| Offline Volume Expansion    | Yes (v2.0.0 onwards)              |
 
 <br>
 

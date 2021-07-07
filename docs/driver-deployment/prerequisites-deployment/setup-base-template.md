@@ -11,10 +11,10 @@ PowerCLI will need to be configured to bypass certificate validation and the sys
 
 ```text
 # Install VMware PowerShell Module
-C:\> Install-Module -name VMware.PowerCLI -Confirm:$false
+PS /> Install-Module -name VMware.PowerCLI -Confirm:$false
 
 # Disable VMware Customer Experience Improvement Program participation
-C:\> Set-PowerCLIConfiguration -ProxyPolicy NoProxy -Scope User -ParticipateInCEIP $false -Confirm:$false
+PS /> Set-PowerCLIConfiguration -ProxyPolicy NoProxy -Scope User -ParticipateInCEIP $false -Confirm:$false
 
 Scope    ProxyPolicy     DefaultVIServerMode InvalidCertificateAction  DisplayDeprecationWarnings WebOperationTimeout
                                                                                                   Seconds
@@ -24,14 +24,14 @@ User
 AllUsers
 
 # Check Version
-PS C:\> Get-Module -Name VMware.VimAutomation.Sdk | select Name, Version
+PS /> Get-Module -Name VMware.VimAutomation.Sdk | select Name, Version
 
 Name                     Version
 ----                     -------
 VMware.VimAutomation.Sdk 11.5.0.14898111
 
 # Ignore certificate errors
-C:\> Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
+PS /> Set-PowerCLIConfiguration -InvalidCertificateAction Ignore -Confirm:$false
 
 Scope    ProxyPolicy     DefaultVIServerMode InvalidCertificateAction  DisplayDeprecationWarnings WebOperationTimeout
                                                                                                   Seconds

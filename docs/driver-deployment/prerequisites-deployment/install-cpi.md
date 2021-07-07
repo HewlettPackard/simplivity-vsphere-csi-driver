@@ -85,17 +85,18 @@ Name:               k8s-worker
 Taints:             node.kubernetes.io/not-ready:NoExecute
 ```
 
-Deploy cloud controller modules
+Deploy cloud controller modules. Please refer to the [support information](../../support-information.md) to download the appropriate yamls according to the driver version.
 
 ```text
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/master/manifests/controller-manager/cloud-controller-manager-roles.yaml
+# deploy the appropriate version of CPI based on the driver version, refer to the example given below for v1.20.0
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/v1.20.0/manifests/controller-manager/cloud-controller-manager-roles.yaml
 clusterrole.rbac.authorization.k8s.io/system:cloud-controller-manager created
 
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/master/manifests/controller-manager/cloud-controller-manager-role-bindings.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/v1.20.0/manifests/controller-manager/cloud-controller-manager-role-bindings.yaml
 rolebinding.rbac.authorization.k8s.io/servicecatalog.k8s.io:apiserver-authentication-reader created
 clusterrolebinding.rbac.authorization.k8s.io/system:cloud-controller-manager created
 
-$ kubectl apply -f https://github.com/kubernetes/cloud-provider-vsphere/raw/master/manifests/controller-manager/vsphere-cloud-controller-manager-ds.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/cloud-provider-vsphere/v1.20.0/manifests/controller-manager/vsphere-cloud-controller-manager-ds.yaml
 serviceaccount/cloud-controller-manager created
 daemonset.apps/vsphere-cloud-controller-manager created
 service/vsphere-cloud-controller-manager created
