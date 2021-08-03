@@ -74,7 +74,6 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | Access mode                 | RWO                               |
 | Volume Topology/Zones       | Yes                               |
 | Snapshots                   | Yes                               |
-| Extend Volume               | No                                |
 | Encryption                  | No                                |
 | Offline Volume Expansion    | Yes (v2.0.0 onwards)              |
 
