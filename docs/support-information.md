@@ -16,7 +16,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 |   HPE SimpliVity CSI Versions   |    HPE OmniStack Version    |
 | ------------------------------- | --------------------------- |
 |              1.0.0              |            4.1.0            |
-|              2.0.0              |            4.1.0            |
+|              2.0.0              |        4.1.0, 4.1.0U1       |
 
 <br>
 
