@@ -49,7 +49,7 @@ To get the value for the datastoreurl parameter:
       # provided, then the datastoreurl is preferred over storagepolicyname
       datastoreurl: "ds:///vmfs/volumes/208f9178-aadd745f/"
       # Optional Parameter
-      fstype: "NFS 3"
+      fstype: "ext4"
     ```
 
     This an example of the yaml with the storagepolicyname:
