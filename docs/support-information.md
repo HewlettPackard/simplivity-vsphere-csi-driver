@@ -17,6 +17,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | ------------------------------- | --------------------------- |
 |              1.0.0              |            4.1.0            |
 |              2.0.0              |        4.1.0, 4.1.0U1       |
+|              2.0.1              |        4.1.0, 4.1.0U1       |
 
 <br>
 
@@ -28,6 +29,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | ------------------------------- | ------------------------- |
 |              1.0.0              |           6.7U3           |
 |              2.0.0              |            7.0            |
+|              2.0.1              |            7.0            |
 
 <br>
 
@@ -39,6 +41,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | ------------------------------- | ------------------------- |
 |              1.0.0              |          1.17, 1.18       |
 |              2.0.0              |            1.20           |
+|              2.0.1              |            1.20           |
 
 <br>
 
@@ -50,6 +53,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | ------------------------------- | ------------------------- |
 |              1.0.0              |            1.1.0          |
 |              2.0.0              |            1.20.0         |
+|              2.0.1              |            1.20.0         |
 
 <br>
 
@@ -61,6 +65,7 @@ The following table describes compatibility of the HPE SimpliVity CSI driver for
 | ------------------------------- | ------------------------------------- |
 |              1.0.0              |                  2.1.1                |
 |              2.0.0              |                  4.0.0                |
+|              2.0.1              |                  4.0.0                |
 
 <br>
 
