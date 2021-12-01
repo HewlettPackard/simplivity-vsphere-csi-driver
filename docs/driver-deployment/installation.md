@@ -36,10 +36,13 @@ password = "simplivity_password"      # Password of HPE SimpliVity OVC
 Create the secret
 
 ```text
-$ kubectl create secret generic vsphere-config-secret --from-file=csi-vsphere.conf --namespace=kube-system
-$ kubectl get secret vsphere-config-secret --namespace=kube-system
+$ kubectl create secret generic hpesvt-config-secret --from-file=csi-vsphere.conf --namespace=kube-system
+$ kubectl get secret hpesvt-config-secret --namespace=kube-system
 NAME                    TYPE     DATA   AGE
-vsphere-config-secret   Opaque   1      12s
+hpesvt-config-secret   Opaque   1      12s
+
+# NOTE: Use the name vsphere-config-secret instead of the name hpesvt-config-secret in the above secret
+# creation steps for HPE SimpliVity CSI Driver versions v1.0.0 and v2.0.0
 ```
 
 After creating the secret in Kubernetes, remove the file for security.
