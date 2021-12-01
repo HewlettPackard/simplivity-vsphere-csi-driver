@@ -172,10 +172,13 @@ password = "simplivity_password"      # Password of HPE SimpliVity OVC
 # region = k8s-region
 # zone = k8s-zone</code></pre>
 <p>Create the secret</p>
-<pre class="highlight"><code class="language-text">$ kubectl create secret generic vsphere-config-secret --from-file=csi-vsphere.conf --namespace=kube-system
-$ kubectl get secret vsphere-config-secret --namespace=kube-system
+<pre class="highlight"><code class="language-text">$ kubectl create secret generic hpesvt-config-secret --from-file=csi-vsphere.conf --namespace=kube-system
+$ kubectl get secret hpesvt-config-secret --namespace=kube-system
 NAME                    TYPE     DATA   AGE
-vsphere-config-secret   Opaque   1      12s</code></pre>
+hpesvt-config-secret   Opaque   1      12s
+
+# NOTE: Use the name vsphere-config-secret instead of the name hpesvt-config-secret in the above secret
+# creation steps for HPE SimpliVity CSI Driver versions v1.0.0 and v2.0.0</code></pre>
 <p>After creating the secret in Kubernetes, remove the file for security.</p>
 <pre class="highlight"><code class="language-text">rm csi-vsphere.conf</code></pre>
 <h2 id="create-rbac-for-hpe-simplivity-csi-driver">Create RBAC for HPE SimpliVity CSI Driver</h2>
