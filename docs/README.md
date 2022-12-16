@@ -1,10 +1,15 @@
-# Overview
+
+# THE HPE SimpliVity CSI Plugin has been DISCONTINUED
+
+## Overview
 
 The HPE SimpliVity Container Storage Interface (CSI) driver for vSphere enables you to provision HPE SimpliVity storage for Kubernetes applications while providing HPE SimpliVity data protection. It includes the following features:
 
 - Snapshots
 - Static and dynamic provisioning
 - Read and write from a single pod
+
+THE HPE SimpliVity CSI Plugin has been discontinued.
 
 ## Components
 
